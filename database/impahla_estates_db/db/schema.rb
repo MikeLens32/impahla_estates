@@ -10,15 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_18_184906) do
+ActiveRecord::Schema.define(version: 2022_08_24_225440) do
 
-  create_table "comments", force: :cascade do |t|
-    t.string "text"
-    t.string "media"
-    t.string "reaction"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
+# Could not dump table "comments" because of following StandardError
+#   Unknown type 'reference' for column 'user_id'
 
   create_table "events", force: :cascade do |t|
     t.string "text"
@@ -31,6 +26,7 @@ ActiveRecord::Schema.define(version: 2022_08_18_184906) do
   create_table "listings", force: :cascade do |t|
     t.string "address"
     t.string "description"
+    t.string "media"
     t.integer "price"
     t.integer "bedroom"
     t.integer "bath"
@@ -44,11 +40,12 @@ ActiveRecord::Schema.define(version: 2022_08_18_184906) do
     t.string "reaction"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "author_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
-    t.string "password"
+    t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

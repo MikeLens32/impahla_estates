@@ -1,10 +1,10 @@
 class Listing < ApplicationRecord
 
-    validates :address, pressence: true
-    validates :description, pressence: true
-    validates :price, pressence: true
-    validates :bedroom, pressence: true
-    validates :bath, pressence: true
+    validates :address, presence: true
+    validates :description, presence: true
+    validates :price, presence: true
+    validates :bedroom, presence: true
+    validates :bath, presence: true
 
 
 end
