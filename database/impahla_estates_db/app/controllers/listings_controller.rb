@@ -3,8 +3,9 @@ class ListingsController < ApplicationController
     before_action :find_listing, except: [:index, :create]
 
     def index
-        user = User.find_by!(id: params[:user_id])
-        render json: user.all
+        # user = User.find_by!(id: params[:user_id])
+        listing = Listing.all
+        render json: listing
     end
     
     def show
@@ -22,7 +23,7 @@ class ListingsController < ApplicationController
     end
 
     def destroy
-        @event&.destroy!
+        @listing&.destroy!
         head :no_content
     end
 
@@ -30,7 +31,7 @@ class ListingsController < ApplicationController
     private
 
     def find_listing
-        @listing = Post.find_by!(id: params[:id])
+        @listing = Listing.find_by!(id: params[:id])
     end
 
     def list_params
