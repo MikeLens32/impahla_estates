@@ -15,8 +15,8 @@ class User < ApplicationRecord
     has_many :authored_post, class_name: "Post", foreign_key: :authored_post_id #for the Post created by the User
 
     has_many :comments, dependent: :destroy
-    has_many :events
-    has_many :listings 
+    has_many :events, dependent: :destroy
+    has_many :listings, dependent: :destroy
     
     validates :username, presence: true, uniqueness: true, length: {in: 4..20}
     validates :password, length: {in: 6..20}

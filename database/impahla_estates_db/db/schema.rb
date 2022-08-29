@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_28_222925) do
+ActiveRecord::Schema.define(version: 2022_08_29_165639) do
 
   create_table "comments", force: :cascade do |t|
     t.string "text"
@@ -18,10 +18,10 @@ ActiveRecord::Schema.define(version: 2022_08_28_222925) do
     t.integer "reaction"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "com_creator_id", null: false
     t.integer "post_id", null: false
-    t.index ["com_creator_id"], name: "index_comments_on_com_creator_id"
+    t.integer "user_id", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -54,9 +54,7 @@ ActiveRecord::Schema.define(version: 2022_08_28_222925) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "author_id", null: false
-    t.integer "commented_post_id", null: false
     t.index ["author_id"], name: "index_posts_on_author_id"
-    t.index ["commented_post_id"], name: "index_posts_on_commented_post_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -67,9 +65,8 @@ ActiveRecord::Schema.define(version: 2022_08_28_222925) do
   end
 
   add_foreign_key "comments", "posts"
-  add_foreign_key "comments", "users", column: "com_creator_id"
+  add_foreign_key "comments", "users"
   add_foreign_key "events", "users", column: "host_id"
   add_foreign_key "listings", "users", column: "creator_id"
   add_foreign_key "posts", "users", column: "author_id"
-  add_foreign_key "posts", "users", column: "commented_post_id"
 end
