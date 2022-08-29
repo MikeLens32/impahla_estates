@@ -5,6 +5,7 @@ class ListingsController < ApplicationController
     def index
         # user = User.find_by!(id: params[:user_id])
         listing = Listing.all
+        byebug
         render json: listing
     end
     

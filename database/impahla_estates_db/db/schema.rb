@@ -10,17 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_24_225440) do
+ActiveRecord::Schema.define(version: 2022_08_28_222925) do
 
-# Could not dump table "comments" because of following StandardError
-#   Unknown type 'reference' for column 'user_id'
+  create_table "comments", force: :cascade do |t|
+    t.string "text"
+    t.string "media"
+    t.integer "reaction"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "com_creator_id", null: false
+    t.integer "post_id", null: false
+    t.index ["com_creator_id"], name: "index_comments_on_com_creator_id"
+    t.index ["post_id"], name: "index_comments_on_post_id"
+  end
 
   create_table "events", force: :cascade do |t|
     t.string "text"
-    t.datetime "date"
+    t.date "date"
     t.string "media"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "host_id", null: false
+    t.index ["host_id"], name: "index_events_on_host_id"
   end
 
   create_table "listings", force: :cascade do |t|
@@ -32,15 +43,20 @@ ActiveRecord::Schema.define(version: 2022_08_24_225440) do
     t.integer "bath"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "creator_id", null: false
+    t.index ["creator_id"], name: "index_listings_on_creator_id"
   end
 
   create_table "posts", force: :cascade do |t|
     t.string "text"
     t.string "media"
-    t.string "reaction"
+    t.integer "reaction"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "author_id"
+    t.integer "author_id", null: false
+    t.integer "commented_post_id", null: false
+    t.index ["author_id"], name: "index_posts_on_author_id"
+    t.index ["commented_post_id"], name: "index_posts_on_commented_post_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -50,4 +66,10 @@ ActiveRecord::Schema.define(version: 2022_08_24_225440) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users", column: "com_creator_id"
+  add_foreign_key "events", "users", column: "host_id"
+  add_foreign_key "listings", "users", column: "creator_id"
+  add_foreign_key "posts", "users", column: "author_id"
+  add_foreign_key "posts", "users", column: "commented_post_id"
 end

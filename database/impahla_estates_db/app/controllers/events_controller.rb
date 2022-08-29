@@ -3,8 +3,9 @@ class EventsController < ApplicationController
     before_action :find_event, except: [:index, :create]
 
     def index
-        user = User.find_by!(id: params[:user_id])
-        render json: user.all
+        # user = User.find_by!(id: params[:user_id])
+        event = Event.all
+        render json: event
     end
     
     def show
