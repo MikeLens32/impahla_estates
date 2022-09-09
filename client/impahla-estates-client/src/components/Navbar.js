@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react'
+import { UserContext } from '../context/user';
 import { Link } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar'
@@ -9,11 +10,14 @@ import Listings from './Listings'
 import Networking from './Networking'
 
 const NavBar = () => {
+
+    const { user } = useContext(UserContext)
+
     return (
         <div>
             <Navbar bg="primary" variant="dark">
                 <Container>
-                {/* <Navbar.Brand href="#home">Navbar</Navbar.Brand> */}
+                <Navbar.Brand >{!user ? <div>IE</div> : <div>{user.username}</div>}</Navbar.Brand>
                 <Nav className="me-auto">
                     <Nav.Link as={Link} element={<Home />} to={"/home"}>Home</Nav.Link>
                     <Nav.Link as={Link} element={<Events />} to={"/events"}>Events</Nav.Link>

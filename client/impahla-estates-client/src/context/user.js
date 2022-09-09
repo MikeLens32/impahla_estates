@@ -38,6 +38,7 @@ function UserProvider({children}) {
                 const data = await resp.json()
                 console.log(data)
                 setUser(data)
+                debugger
                 history('/home')
                 return true
             } else {

@@ -49,15 +49,13 @@ const Login = () => {
 
     function handleLogin(e){
         e.preventDefault()
-        console.log(userObjIn)
         if([userObjIn.username, userObjIn.password].some(val => val.trim() === '')) {
             setMessage({message: "You must fill in all the information please!", color: 'red'})
         }
-        console.log(userObjIn)
         const didItWork = login(userObjIn)
         if (didItWork) {
             setMessage({message: 'Successfully logged in!', color: 'green'})
-            history('/home')            
+            // history('/home')            
         }
     }
 
