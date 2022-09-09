@@ -3,8 +3,8 @@ class PostsController < ApplicationController
     before_action :find_post, except: [:index, :create]
 
     def index
-        user = User.find_by!(id: params[:user_id])
-        render json: user.all
+        posts = Post.all.includes(:comments)
+        render json: posts.map{|post|PostSerializer.new(post).as_json}, status: :ok
     end
     
     def show
