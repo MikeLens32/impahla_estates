@@ -1,17 +1,17 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 
-const ListingsCard = ({ address, description, media, price, bedroom ,bath }) => {
+const ListingsCard = ({ listings }) => {
     return (
         <div>
             <Card className="text-center">
-                <Card.Img variant="top" src={media} /> 
+                <Card.Img variant="top" src={listings.media} /> 
                 <Card.Body>
-                    <Card.Title>{address}</Card.Title>
-                    <Card.Text>{description}</Card.Text>
-                    <Card.Text>Price: {price}K</Card.Text>
-                    <Card.Text>Bedroom: {bedroom}</Card.Text>
-                    <Card.Text>Bath: {bath}</Card.Text>
+                    <Card.Title>{listings.address}</Card.Title>
+                    <Card.Text>{listings.description}</Card.Text>
+                    <Card.Text>Price: {listings.price}K</Card.Text>
+                    <Card.Text>Bedroom: {listings.bedroom}</Card.Text>
+                    <Card.Text>Bath: {listings.bath}</Card.Text>
                 </Card.Body>
                 {/* <Card.Footer className="text-muted">{}</Card.Footer> */}
             </Card>

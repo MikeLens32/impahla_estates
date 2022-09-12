@@ -2,15 +2,15 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 // import Button from 'react-bootstrap/Button';
 
-const EventsCards = ( title, date, media ) => {
+const EventsCards = ({ events }) => {
     return (
         <div>
             <Card className="text-center">
-                <Card.Img variant="top" src={media} />
+                <Card.Img variant="top" src={events.media} />
                 <Card.Body>
-                    <Card.Title>{title}</Card.Title>
+                    <Card.Title>{events.text}</Card.Title>
                     <Card.Text>
-                    {date}
+                    {events.date}
                     </Card.Text>
                 </Card.Body>
                 <Card.Footer className="text-muted">2 days ago</Card.Footer>

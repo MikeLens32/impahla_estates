@@ -42,7 +42,7 @@ function UserProvider({children}) {
                 history('/home')
                 return true
             } else {
-                // debugger
+                debugger
                 const errorObj = await resp.json()
                 setMessage({message: errorObj.error, color: 'red'})
             }

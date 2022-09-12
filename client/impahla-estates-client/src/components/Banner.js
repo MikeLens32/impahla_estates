@@ -8,7 +8,7 @@ const Banner = () => {
                 <Carousel.Item>
                     <img
                     className="d-block w-100"
-                    src="../../public/pictures/pexels-aleksejs-bergmanis-681333.jpg"
+                    src={window.location.origin + "../../public/pictures/pexels-aleksejs-bergmanis-681333.jpg"}
                     alt="First slide"
                     />
                     <Carousel.Caption>
@@ -19,7 +19,7 @@ const Banner = () => {
                 <Carousel.Item>
                     <img
                     className="d-block w-100"
-                    src="../../public/pictures/pexels-anna-shvets-3727456.jpg"
+                    src={window.location.origin + "../../public/pictures/pexels-anna-shvets-3727456.jpg"}
                     alt="Second slide"
                     />
 
@@ -31,7 +31,7 @@ const Banner = () => {
                 <Carousel.Item>
                     <img
                     className="d-block w-100"
-                    src="../../public/pictures/pexels-photomix-company-101808.jpg"
+                    src={window.location.origin + "../../public/pictures/pexels-photomix-company-101808.jpg"}
                     alt="Third slide"
                     />
 

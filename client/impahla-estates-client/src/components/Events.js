@@ -1,20 +1,10 @@
-import React, { useEffect, useContext, useState  } from 'react';
-import { UserContext } from '../context/user'
-import { useNavigate } from 'react-router';
+import React, { useEffect, useState  } from 'react';
+import EventsCards from './Card/EventsCards';
 
 
 const Events = () => {
 
     const [listedEvent, setListedEvent] = useState([])
-
-    const { user } = useContext(UserContext)
-    const history = useNavigate()
-
-    useEffect(() => {
-        if (!user){
-            return history('/')
-        }
-    }, [user, history])
 
     useEffect(() => {
         fetch('/events')
@@ -22,14 +12,18 @@ const Events = () => {
         .then((eventInfo) => {
             setListedEvent(eventInfo)
         })
-        .then(() => console.log(listedEvent))
     }, [])
 
-    
+    const showEvents = listedEvent.map((listEvent) => (
+        <>
+            <EventsCards events={listEvent} />
+        </>
+    ))    
 
     return (
         <div>
-            
+            <h1>Events</h1>
+            {showEvents}
         </div>
     )
 }
