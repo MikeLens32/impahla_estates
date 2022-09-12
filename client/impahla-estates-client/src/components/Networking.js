@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PostCard from './Card/PostCard';
 
 const Networking = () => {
 
@@ -7,12 +8,12 @@ const Networking = () => {
     useEffect(() => {
         fetch('/posts')
         .then(r => r.json())
-        .then()
+        .then(postsData => setPosts(postsData))
     })
 
     return (
         <div>
-            
+            <PostCard post={posts}/>
         </div>
     )
 }

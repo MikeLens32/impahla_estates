@@ -1,10 +1,13 @@
 import React from 'react'
 
-const CommentCard = ({ comment }) => {
+const CommentCard = ({ comments }) => {
+
+    
+
     return (
-        <div>
+        <>
             
-        </div>
+        </>
     )
 }
 
