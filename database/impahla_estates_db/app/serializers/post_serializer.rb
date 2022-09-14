@@ -1,4 +1,4 @@
 class PostSerializer < ActiveModel::Serializer
-  attributes :id, :text, :media, :reaction, :comments
   belongs_to :author_id
+  attributes :id, :text, :media, :reaction, :comments
 end

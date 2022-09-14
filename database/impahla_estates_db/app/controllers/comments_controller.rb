@@ -3,8 +3,9 @@ class CommentsController < ApplicationController
     before_action :find_comment, except: [:index, :create]
 
     def index
-        user = User.find_by!(id: params[:user_id])
-        render json: user.all
+        post = Post.find(params[:post_id])
+        comments = post.comments.where(user_id: params[:user_id])
+        render json: comments.to_json
     end
     
     def show
@@ -12,7 +13,11 @@ class CommentsController < ApplicationController
     end
     
     def create
-        comment = Comment.create!(com_params)
+        byebug
+        comment = Comment.create(com_params)
+        comment.post_id = params[:post_id]
+        comment.user_id = session[:user_id]
+        comment.save
         render json: comment, status: :created
     end
 
@@ -34,7 +39,7 @@ class CommentsController < ApplicationController
     end
 
     def com_params
-        params.permit(:text, :media, :reactions)
+        params.permit(:text, :post_id)
     end
 
 end

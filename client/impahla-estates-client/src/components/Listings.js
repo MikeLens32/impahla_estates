@@ -9,7 +9,7 @@ const Listings = () => {
         fetch('/listings')
         .then(r => r.json())
         .then(propData => setProperty(propData))
-    })
+    }, [])
 
     const listedProperties = property.map((listedP) => (
         <>

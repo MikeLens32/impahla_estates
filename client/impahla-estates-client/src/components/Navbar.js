@@ -11,14 +11,14 @@ import Networking from './Networking'
 
 const NavBar = () => {
 
-    const { user } = useContext(UserContext)
+    const { user, signout } = useContext(UserContext)
 
     return (
         <div>
-            <Navbar bg="primary" variant="dark">
+            <Navbar bg="primary" variant="dark" expand="lg">
                 <Container>
-                <Navbar.Brand >{!user ? <div>IE</div> : <div>{user.username}</div>}</Navbar.Brand>
-                <Nav className="me-auto">
+                <Navbar.Brand >{!user ? <div>IE</div> : <div onClick={signout}>{user.username}</div>}</Navbar.Brand>
+                <Nav className="ms-auto">
                     <Nav.Link as={Link} element={<Home />} to={"/home"}>Home</Nav.Link>
                     <Nav.Link as={Link} element={<Events />} to={"/events"}>Events</Nav.Link>
                     <Nav.Link as={Link} element={<Listings />} to={"/listings"}>Listings</Nav.Link>

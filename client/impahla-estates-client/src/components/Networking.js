@@ -9,11 +9,15 @@ const Networking = () => {
         fetch('/posts')
         .then(r => r.json())
         .then(postsData => setPosts(postsData))
-    })
+    }, [])
+
+    const showPostings = () => {
+        return posts.map((post) => (<PostCard posts={post} setPosts={setPosts}/>))
+    }
 
     return (
         <div>
-            <PostCard post={posts}/>
+            {showPostings()}
         </div>
     )
 }

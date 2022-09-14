@@ -1,19 +1,15 @@
-import { u4 as uuid } from 'uuid';
+// import { v4 as uuid } from 'uuid';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
-import { UserContext } from '../../context/user';
-import ListGroup from 'react-bootstrap/ListGroup';
-import React, { useState, useEffect, useContext } from 'react';
+import Button from 'react-bootstrap/Button';
+import React, { useState } from 'react';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import CommentCard from './CommentCard';
 
-const PostCard = ({ posts }) => {
+const PostCard = ({ posts, setPosts }) => {
 
-    const unique_id = uuid()
-    const { user } = useContext(UserContext)
-    const [postList, setPostList] = useState(posts)
+    // const unique_id = uuid()
     const [postComments, setPostComments] = useState({
-        post_id: "",
-        user_id: "",
         text: ""
     })
 
@@ -24,15 +20,13 @@ const PostCard = ({ posts }) => {
         })
     }
 
-    function handleSubmit(e, post) {
+    function handleSubmit(e, posts) {
         e.preventDefault();
         const newComment = {
-            post_id: post.id,
-            user_id: user.id,
-            text: comment.text
+            text: postComments.text
         }
 
-        fetch(`/comments/${posts.comments.id}`, {
+        fetch('/comments', {
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json'
@@ -41,51 +35,44 @@ const PostCard = ({ posts }) => {
         })
         .then(r => r.json())
         .then(comData => {
-            const postIndex = postList.findIndex((postObj) => {
-                return post.id === postObj.id
+            const postIndex = posts.findIndex((postObj) => {
+                return posts.id === postObj.id
             })
             const finalPost = {
-                ...post,
-                comments: [...post.comments, comData]
+                ...posts,
+                comments: [...posts.comments, comData]
             }
-            setPostList([
-                ...postList.slice(0, postIndex),
+            setPosts([
+                ...posts.slice(0, postIndex),
                 finalPost,
-                ...postList.slice(postIndex +1)
+                ...posts.slice(postIndex +1)
             ])
-            setPostComments({
-                post_id: '',
-                user_id: '',
-                text: ''
-            })
+            
         })
     }
 
-    const showComments = posts.comments.map((comment) => (
-        <ListGroup key={comment.unique_id} className="list-group-flush">
-            <ListGroup.Item>{comment.text}</ListGroup.Item>
-        </ListGroup>
-    ))
-
-    useEffect(() => {
-        setPostList(posts)
-    }, [posts])
+    
 
     return (
         <div>
-            <Card key={postList.id} style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={postList.media} />
+            <Card key={posts.id} style={{ width: '18rem' }}>
+                <Card.Img variant="top" src={posts.media} />
                 <Card.Body>
-                    <Card.Text>{postList.text}</Card.Text>
+                    <Card.Text>{posts.text}</Card.Text>
                 </Card.Body>
-                <FloatingLabel onChange={handleChange} value={postComments.text} name='text' controlId="floatingTextarea2" label="Comments">
-                <Form.Control
-                as="textarea"
-                placeholder="Leave a comment here"
-                style={{ height: '100px' }}
-                />
-            </FloatingLabel>
-                {showComments}
+                <Form onSubmit={e => handleSubmit(e, posts)}>
+                    <Form.Group onChange={handleChange} value={postComments.text}>
+                        <FloatingLabel   controlId="floatingTextarea2" label="Comments">
+                        <Form.Control name='text' type="textarea" placeholder="Comment" style={{ height: '100px' }} />
+                        </FloatingLabel>
+                        <Button variant="primary" type="submit">Comment</Button>
+                    </Form.Group>
+                    
+                </Form>
+                
+                {posts.comments.map((comment) => (
+                    <CommentCard comments={comment} />
+                ))}
             </Card>
         </div>
     )
