@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-    skip_before_action :authorized, only: [:index]
+    skip_before_action :authorized, only: [:index, :create]
     before_action :find_event, except: [:index, :create]
 
     def index
@@ -13,7 +13,9 @@ class EventsController < ApplicationController
     end
     
     def create
-        event = Post.create!(even_params)
+        event = Event.create(even_params)
+        event.host_id = session[:user_id]
+        event.save
         render json: event, status: :created
     end
 
@@ -35,7 +37,7 @@ class EventsController < ApplicationController
     end
 
     def even_params
-        params.permit(:text, :media, :reactions)
+        params.permit(:text, :media, :date, :host_id)
     end
 
 end

@@ -5,10 +5,10 @@ const Banner = () => {
     return (
         <div>
             <Carousel>
-                <Carousel.Item>
+                <Carousel.Item className='Carousel'>
                     <img
                     className="d-block w-100"
-                    src={window.location.origin + "../../public/pictures/pexels-aleksejs-bergmanis-681333.jpg"}
+                    src="https://www.regulationmatters.uk/wp-content/uploads/2018/04/diversity12.jpeg"
                     alt="First slide"
                     />
                     <Carousel.Caption>
@@ -16,10 +16,10 @@ const Banner = () => {
                     <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                     </Carousel.Caption>
                 </Carousel.Item>
-                <Carousel.Item>
+                <Carousel.Item className='Carousel'>
                     <img
                     className="d-block w-100"
-                    src={window.location.origin + "../../public/pictures/pexels-anna-shvets-3727456.jpg"}
+                    src="https://www.city-locksmith.co.uk/wp-content/uploads/2018/03/keys-locks.jpg"
                     alt="Second slide"
                     />
 
@@ -28,10 +28,10 @@ const Banner = () => {
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     </Carousel.Caption>
                 </Carousel.Item>
-                <Carousel.Item>
+                <Carousel.Item className='Carousel'>
                     <img
                     className="d-block w-100"
-                    src={window.location.origin + "../../public/pictures/pexels-photomix-company-101808.jpg"}
+                    src="https://motionarray.imgix.net/preview-669091NuqJVMqon_0006.jpg"
                     alt="Third slide"
                     />
 

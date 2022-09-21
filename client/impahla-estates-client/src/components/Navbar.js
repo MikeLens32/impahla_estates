@@ -18,12 +18,12 @@ const NavBar = () => {
             <Navbar bg="primary" variant="dark" expand="lg">
                 <Container>
                 <Navbar.Brand >{!user ? <div>IE</div> : <div onClick={signout}>{user.username}</div>}</Navbar.Brand>
-                <Nav className="ms-auto">
+                {!user ? '' : (<Nav className="ms-auto">
                     <Nav.Link as={Link} element={<Home />} to={"/home"}>Home</Nav.Link>
                     <Nav.Link as={Link} element={<Events />} to={"/events"}>Events</Nav.Link>
                     <Nav.Link as={Link} element={<Listings />} to={"/listings"}>Listings</Nav.Link>
                     <Nav.Link as={Link} element={<Networking />} to={"/networking"}>Networking</Nav.Link>
-                </Nav>
+                </Nav>)}
                 </Container>
             </Navbar>
         </div>

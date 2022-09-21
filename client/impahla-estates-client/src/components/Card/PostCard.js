@@ -23,6 +23,7 @@ const PostCard = ({ posts, setPosts }) => {
     function handleSubmit(e, posts) {
         e.preventDefault();
         const newComment = {
+            post_id: posts.id,
             text: postComments.text
         }
 
@@ -47,7 +48,10 @@ const PostCard = ({ posts, setPosts }) => {
                 finalPost,
                 ...posts.slice(postIndex +1)
             ])
-            
+            setPostComments({
+                post_id: '',
+                text: ''
+            })
         })
     }
 
@@ -67,7 +71,6 @@ const PostCard = ({ posts, setPosts }) => {
                         </FloatingLabel>
                         <Button variant="primary" type="submit">Comment</Button>
                     </Form.Group>
-                    
                 </Form>
                 
                 {posts.comments.map((comment) => (

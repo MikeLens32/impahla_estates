@@ -14,7 +14,10 @@ class ListingsController < ApplicationController
     end
     
     def create
-        listing = Post.create!(list_params)
+        byebug
+        listing = Listing.create(list_params)
+        listing.creator_id = session[:user_id]
+        listing.save
         render json: listing, status: :created
     end
 
@@ -36,7 +39,7 @@ class ListingsController < ApplicationController
     end
 
     def list_params
-        params.permit(:text, :media, :reactions)
+        params.permit(:address, :description, :media, :price, :bedroom, :bath)
     end
 
 end

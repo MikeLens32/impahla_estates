@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card';
 const EventsCards = ({ events }) => {
     return (
         <div>
-            <Card className="text-center">
+            <Card className="text-center" style={{ width: '18rem' }}>
                 <Card.Img variant="top" src={events.media} />
                 <Card.Body>
                     <Card.Title>{events.text}</Card.Title>
@@ -13,7 +13,7 @@ const EventsCards = ({ events }) => {
                     {events.date}
                     </Card.Text>
                 </Card.Body>
-                <Card.Footer className="text-muted">2 days ago</Card.Footer>
+                {/* <Card.Footer className="text-muted">{events.created_at}</Card.Footer> */}
             </Card>
         </div>
     )

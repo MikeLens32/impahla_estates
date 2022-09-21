@@ -4,7 +4,8 @@ import Card from 'react-bootstrap/Card';
 const ListingsCard = ({ listings }) => {
     return (
         <div>
-            <Card className="text-center">
+            
+            <Card className="text-center" style={{ width: '18rem' }}>
                 <Card.Img variant="top" src={listings.media} /> 
                 <Card.Body>
                     <Card.Title>{listings.address}</Card.Title>
@@ -13,7 +14,7 @@ const ListingsCard = ({ listings }) => {
                     <Card.Text>Bedroom: {listings.bedroom}</Card.Text>
                     <Card.Text>Bath: {listings.bath}</Card.Text>
                 </Card.Body>
-                {/* <Card.Footer className="text-muted">{}</Card.Footer> */}
+                {/* <Card.Footer className="text-muted">{listings.created_at}</Card.Footer> */}
             </Card>
         </div>
     )

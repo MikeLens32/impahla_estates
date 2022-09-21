@@ -11,7 +11,7 @@ const Login = () => {
     const { user, login, signup } = useContext(UserContext)
     const { setMessage } = useContext(MessageContext)
     const [ toggle, setToggle ] = useState(false)
-    const[ userObjIn, setUserObjIn ] = useState({
+    const [ userObjIn, setUserObjIn ] = useState({
         username: '',
         password:'',
     })
