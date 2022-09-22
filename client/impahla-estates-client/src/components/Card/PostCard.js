@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import CommentCard from './CommentCard';
 
-const PostCard = ({ posts, setPosts }) => {
+const PostCard = ({ post, setPosts }) => {
 
     // const unique_id = uuid()
     const [postComments, setPostComments] = useState({
@@ -20,10 +20,10 @@ const PostCard = ({ posts, setPosts }) => {
         })
     }
 
-    function handleSubmit(e, posts) {
+    function handleSubmit(e, post) {
         e.preventDefault();
         const newComment = {
-            post_id: posts.id,
+            post_id: post.id,
             text: postComments.text
         }
 
@@ -36,17 +36,17 @@ const PostCard = ({ posts, setPosts }) => {
         })
         .then(r => r.json())
         .then(comData => {
-            const postIndex = posts.findIndex((postObj) => {
-                return posts.id === postObj.id
+            const postIndex = post.findIndex((postObj) => {
+                return post.id === postObj.id
             })
             const finalPost = {
-                ...posts,
-                comments: [...posts.comments, comData]
+                ...post,
+                comments: [...post.comments, comData]
             }
             setPosts([
-                ...posts.slice(0, postIndex),
+                ...post.slice(0, postIndex),
                 finalPost,
-                ...posts.slice(postIndex +1)
+                ...post.slice(postIndex +1)
             ])
             setPostComments({
                 post_id: '',
@@ -59,12 +59,12 @@ const PostCard = ({ posts, setPosts }) => {
 
     return (
         <div>
-            <Card key={posts.id} style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={posts.media} />
+            <Card key={post.id} style={{ width: '18rem' }}>
+                <Card.Img variant="top" src={post.media} />
                 <Card.Body>
-                    <Card.Text>{posts.text}</Card.Text>
+                    <Card.Text>{post.text}</Card.Text>
                 </Card.Body>
-                <Form onSubmit={e => handleSubmit(e, posts)}>
+                <Form onSubmit={e => handleSubmit(e, post)}>
                     <Form.Group onChange={handleChange} value={postComments.text}>
                         <FloatingLabel   controlId="floatingTextarea2" label="Comments">
                         <Form.Control name='text' type="textarea" placeholder="Comment" style={{ height: '100px' }} />
@@ -73,7 +73,7 @@ const PostCard = ({ posts, setPosts }) => {
                     </Form.Group>
                 </Form>
                 
-                {posts.comments.map((comment) => (
+                {post.comments.map((comment) => (
                     <CommentCard comments={comment} />
                 ))}
             </Card>

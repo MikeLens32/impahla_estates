@@ -43,7 +43,7 @@ const Listings = () => {
             body: JSON.stringify(listFormInfo)
         })
         .then(r => r.json())
-        .then(listData => setListForm(listData))
+        .then(listData => setProperty([...property,listData]))
     }
 
     useEffect(() => {

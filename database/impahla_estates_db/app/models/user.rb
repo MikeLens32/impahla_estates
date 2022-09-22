@@ -23,4 +23,8 @@ class User < ApplicationRecord
 
     has_secure_password
 
+    # def all_posts
+    #     created_post_ids = authored_post.map(&:)
+    # end
+
 end

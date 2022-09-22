@@ -41,7 +41,7 @@ const Events = () => {
         })
         .then(r => r.json())
         .then(eventData => {
-            setListedEvent(eventData)
+            setListedEvent([...listedEvent, eventData])
             setEventForm({
                 text:'',
                 date:'',
