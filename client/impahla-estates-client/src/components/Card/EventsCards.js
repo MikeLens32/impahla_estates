@@ -2,7 +2,22 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 // import Button from 'react-bootstrap/Button';
 
-const EventsCards = ({ events }) => {
+const EventsCards = ({ events, setEvents, user }) => {
+
+    const handleDelete = (eventID) => {
+        fetch(`events/${eventID}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type':'application/json',
+                'Accept':'application/json'
+            }
+        })
+        .then(() => {
+            const filterEvents = events.filter(event => events.id !== eventID);
+            setEvents(filterEvents)
+        })
+    }
+
     return (
         <div>
             <Card className="text-center" style={{ width: '18rem' }}>
@@ -13,7 +28,11 @@ const EventsCards = ({ events }) => {
                     {events.date}
                     </Card.Text>
                 </Card.Body>
-                {/* <Card.Footer className="text-muted">{events.created_at}</Card.Footer> */}
+                { user.id === events.host_id ? (
+                <Card.Footer className="text-muted">
+                    <button onClick={() => handleDelete(events.id)}>Edit</button>  
+                    <button>Remove</button>
+                </Card.Footer>) : ''}
             </Card>
         </div>
     )

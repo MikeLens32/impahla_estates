@@ -23,8 +23,6 @@ class User < ApplicationRecord
 
     has_secure_password
 
-    # def all_posts
-    #     created_post_ids = authored_post.map(&:)
-    # end
+    # I want to create a method that cover matches the :host_id to session[:user_id] 
 
 end

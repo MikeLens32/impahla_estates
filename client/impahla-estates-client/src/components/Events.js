@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState  } from 'react';
 import { UserContext } from '../context/user';
+// import { useParams } from '/react-router-dom'
 import EventsCards from './Card/EventsCards';
 import CardGroup from 'react-bootstrap/CardGroup';
 import Button from 'react-bootstrap/Button';
@@ -10,6 +11,7 @@ import Col from 'react-bootstrap/Col';
 const Events = () => {
 
     const { user } = useContext( UserContext )
+    // const { id } = useParams()
     const [listedEvent, setListedEvent] = useState([])
     const [eventForm, setEventForm] = useState({
         text: '',
@@ -59,7 +61,7 @@ const Events = () => {
     }, [])
 
     const showEvents = listedEvent.map((listEvent) => (
-        <EventsCards events={listEvent} />
+        <EventsCards events={listEvent} setEvents={setListedEvent} user={user} />
     ))    
 
     return (
