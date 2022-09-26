@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from '../../context/user'
 import Card from 'react-bootstrap/Card';
 
 const ListingsCard = ({ listings }) => {
+
+    const { user } = useContext(UserContext)
     return (
         <div>
             
@@ -14,7 +17,11 @@ const ListingsCard = ({ listings }) => {
                     <Card.Text>Bedroom: {listings.bedroom}</Card.Text>
                     <Card.Text>Bath: {listings.bath}</Card.Text>
                 </Card.Body>
-                {/* <Card.Footer className="text-muted">{listings.created_at}</Card.Footer> */}
+                {user.id === listings.creator_id ?(
+                <Card.Footer className="text-muted">
+                    <button>Remove</button>
+                    <button>Edit</button>
+                </Card.Footer>) : ''}
             </Card>
         </div>
     )

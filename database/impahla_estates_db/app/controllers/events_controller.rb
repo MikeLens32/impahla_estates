@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-    skip_before_action :authorized, only: [:index, :create]
+    skip_before_action :authorized, only: [:index, :update]
     before_action :find_event, except: [:index, :create]
 
     def index
@@ -33,7 +33,7 @@ class EventsController < ApplicationController
     private
 
     def find_event
-        @event = Post.find_by!(id: params[:id])
+        @event = Event.find_by!(id: params[:id])
     end
 
     def even_params

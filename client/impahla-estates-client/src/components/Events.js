@@ -46,8 +46,8 @@ const Events = () => {
             setListedEvent([...listedEvent, eventData])
             setEventForm({
                 text:'',
-                date:'',
-                media: ''
+                media: '',
+                date:''
             })
         })
     }
