@@ -10,6 +10,7 @@ import Listings from './components/Listings';
 import Networking from './components/Networking';
 import { Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import EditEvent from './components/EditEvent';
 
 function App() {  
 
@@ -30,11 +31,12 @@ function App() {
     <div>
         <NavBar />
         <Routes>
-          < Route  path="/" element={<Login/>}/>
-          < Route  path="/home" element={<Home/>}/>
-          < Route  path="/networking" element={<Networking/>}/>
-          < Route  path="/events" element={<Events/>}/>
-          < Route  path="/listings" element={<Listings/>}/>
+          < Route  exact path="/" element={<Login/>}/>
+          < Route  exact path="/home" element={<Home/>}/>
+          < Route  exact path="/networking" element={<Networking/>}/>
+          < Route  exact path="/events" element={<Events/>}/>
+          < Route  exact path="/events/:id/edit" element={<EditEvent/>}/>
+          < Route  exact path="/listings" element={<Listings/>}/>
         </Routes>
       
     </div>
