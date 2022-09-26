@@ -11,6 +11,7 @@ import Networking from './components/Networking';
 import { Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import EditEvent from './components/EditEvent';
+import EditListing from './components/EditListing';
 
 function App() {  
 
@@ -37,6 +38,7 @@ function App() {
           < Route  exact path="/events" element={<Events/>}/>
           < Route  exact path="/events/:id/edit" element={<EditEvent/>}/>
           < Route  exact path="/listings" element={<Listings/>}/>
+          < Route  exact path="/listings/:id/edit" element={<EditListing/>}/>
         </Routes>
       
     </div>

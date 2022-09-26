@@ -9,20 +9,27 @@ const EditEvent = () => {
     const [eventName, setEventName] = useState('')
     const { id } = useParams()
     const history = useNavigate()
+    
+    const handleChange = (e) => {
+        setEventName(e.target.value)
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        
+        const eventForm = {
+            text: eventName
+        }
+        // console.log(eventForm)
         fetch(`/events/${id}`, {
-            method: 'PUT',
+            method: 'PATCH',
             headers:{
                 'Content-Type':'application/json',
                 'Accept':'application/json'
             },
-            body: JSON.stringify(eventName)
+            body: JSON.stringify(eventForm)
         })
         .then(r => r.json())
-        .then(newEvent => setEventName(newEvent.text))
+        // .then(event => console.log(event))
         history('/events')
     }
 
@@ -34,10 +41,11 @@ const EditEvent = () => {
 
     return (
         <div>
+            <h1>Edit Title</h1>
             <Form onSubmit={handleSubmit}>
-                <Form.Group onChange={(e) => setEventName(e.target.name)} value={eventName.text}>
+                <Form.Group  onChange={handleChange} value={eventName}>
                     <FloatingLabel controlId="floatingTextarea2" label="Change Event Name">
-                    <Form.Control name='eventName' type="text" placeholder="Change Event Name" style={{ height: '100px' }} />
+                    <Form.Control name={eventName} type="text" placeholder="Change Event Name" style={{ height: '100px' }} />
                     </FloatingLabel>
                     <Button variant="primary" type="submit">Change</Button>
                     <Button variant="primary" onClick={() => history('/events')}>Cancel</Button>

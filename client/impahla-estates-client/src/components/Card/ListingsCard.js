@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../context/user'
 import Card from 'react-bootstrap/Card';
 
 const ListingsCard = ({ listings }) => {
 
     const { user } = useContext(UserContext)
+    const history = useNavigate()
+
     return (
         <div>
             
@@ -20,7 +23,7 @@ const ListingsCard = ({ listings }) => {
                 {user.id === listings.creator_id ?(
                 <Card.Footer className="text-muted">
                     <button>Remove</button>
-                    <button>Edit</button>
+                    <button onClick={() => history(`/listings/${listings.id}/edits`)}>Edit</button>
                 </Card.Footer>) : ''}
             </Card>
         </div>

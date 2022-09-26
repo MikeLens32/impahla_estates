@@ -13,14 +13,15 @@ class EventsController < ApplicationController
     end
     
     def create
-        event = Event.create(even_params)
+        event = Event.create(event_params)
         event.host_id = session[:user_id]
         event.save
         render json: event, status: :created
     end
 
     def update 
-        @event.update!(even_params)
+        debugger
+        @event.update!(event_params)
         render json: @event, status: :ok
     end
 
@@ -36,8 +37,8 @@ class EventsController < ApplicationController
         @event = Event.find_by!(id: params[:id])
     end
 
-    def even_params
-        params.permit(:text, :media, :date, :host_id)
+    def event_params
+        params.permit(:id, :text, :media, :date, :host_id)
     end
 
 end
