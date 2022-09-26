@@ -23,7 +23,7 @@ const ListingsCard = ({ listings }) => {
                 {user.id === listings.creator_id ?(
                 <Card.Footer className="text-muted">
                     <button>Remove</button>
-                    <button onClick={() => history(`/listings/${listings.id}/edits`)}>Edit</button>
+                    <button onClick={() => history(`/listings/${listings.id}/edit`)}>Edit</button>
                 </Card.Footer>) : ''}
             </Card>
         </div>

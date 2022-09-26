@@ -22,6 +22,7 @@ class ListingsController < ApplicationController
     end
 
     def update 
+        debugger
         @listing.update!(list_params)
         render json: @listing, status: :ok
     end
