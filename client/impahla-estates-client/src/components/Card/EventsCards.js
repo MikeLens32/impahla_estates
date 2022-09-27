@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 // import Button from 'react-bootstrap/Button';
 
 const EventsCards = ({ event, events, setEvents, user }) => {
-
+    console.log(events)
     const handleDelete = (eventID) => {
         // console.log(`deleting league with ID: ${eventID}`)
         fetch(`/events/${eventID}`, {

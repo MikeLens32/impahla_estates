@@ -12,10 +12,6 @@ const ListingsCard = ({ listing, listings, setListings }) => {
         // console.log(`deleting listing with ID: ${eventID}`)
         fetch(`/listings/${listingId}`, {
             method: 'DELETE',
-            headers: {
-                'Content-Type':'application/json',
-                'Accept':'application/json'
-            }
         })
         .then(() => {
             const filterListings = listings.filter((listed) => listed.id !== listingId);

@@ -17,6 +17,9 @@ const Listings = () => {
         bath: '',
         media:''
     })
+    // const uploadImage = (files) => {
+    //     console.log(file[0])
+    // }
 
     const handleChange = (e) => {
         setListForm({
@@ -53,7 +56,7 @@ const Listings = () => {
     }, [])
 
     const listedProperties = property.map((listedP) => (
-            <ListingsCard listing={listedP} lisitngs={property} setListings={setProperty}/>
+            <ListingsCard listing={listedP} listings={property} setListings={setProperty}/>
     ))
 
     return (
