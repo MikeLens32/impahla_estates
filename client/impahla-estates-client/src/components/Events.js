@@ -61,7 +61,7 @@ const Events = () => {
     }, [])
 
     const showEvents = listedEvent.map((listEvent) => (
-        <EventsCards events={listEvent} setEvents={setListedEvent} user={user} />
+        <EventsCards event={listEvent} events={listedEvent} setEvents={setListedEvent} user={user} />
     ))    
 
     return (

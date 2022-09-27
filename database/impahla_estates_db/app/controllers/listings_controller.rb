@@ -14,7 +14,6 @@ class ListingsController < ApplicationController
     end
     
     def create
-        byebug
         listing = Listing.create(list_params)
         listing.creator_id = session[:user_id]
         listing.save
@@ -22,7 +21,6 @@ class ListingsController < ApplicationController
     end
 
     def update 
-        debugger
         @listing.update!(list_params)
         render json: @listing, status: :ok
     end

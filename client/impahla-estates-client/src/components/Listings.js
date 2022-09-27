@@ -53,7 +53,7 @@ const Listings = () => {
     }, [])
 
     const listedProperties = property.map((listedP) => (
-            <ListingsCard listings={listedP} />
+            <ListingsCard listing={listedP} lisitngs={property} setListings={setProperty}/>
     ))
 
     return (

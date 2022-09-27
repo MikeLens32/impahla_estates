@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 // import Button from 'react-bootstrap/Button';
 
-const EventsCards = ({ events, setEvents, user }) => {
+const EventsCards = ({ event, events, setEvents, user }) => {
 
     const handleDelete = (eventID) => {
         // console.log(`deleting league with ID: ${eventID}`)
@@ -11,9 +11,9 @@ const EventsCards = ({ events, setEvents, user }) => {
             method: 'DELETE',
         })
         .then(() => {
-            const filterEvents = events.filter(event => event.id !== eventID);
+            const filterEvents = events.filter(eventP => eventP.id !== eventID);
             console.log(`filterEvents: ${JSON.stringify(filterEvents)}`)
-            // setEvents(filterEvents)
+            setEvents(filterEvents)
         })
     }
     const history = useNavigate();
@@ -22,17 +22,17 @@ const EventsCards = ({ events, setEvents, user }) => {
     return (
         <div>
             <Card className="text-center" style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={events.media} />
+                <Card.Img variant="top" src={event.media} />
                 <Card.Body>
-                    <Card.Title>{events.text}</Card.Title>
+                    <Card.Title>{event.text}</Card.Title>
                     <Card.Text>
-                    {events.date}
+                    {event.date}
                     </Card.Text>
                 </Card.Body>
-                { user.id === events.host_id ? (
+                { user.id === event.host_id ? (
                 <Card.Footer className="text-muted">
-                    <button onClick={() => handleDelete(events.id)}>Remove</button>  
-                    <button onClick={() => history(`/events/${events.id}/edit`)}>Edit</button>
+                    <button onClick={() => handleDelete(event.id)}>Remove</button>  
+                    <button onClick={() => history(`/events/${event.id}/edit`)}>Edit</button>
                 </Card.Footer>) : ''}
             </Card>
         </div>
