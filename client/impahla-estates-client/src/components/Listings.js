@@ -1,3 +1,5 @@
+import Axios from 'axios';
+import { Image } from 'cloudinary-react'
 import React, { useEffect, useState } from 'react';
 import ListingsCard from './Card/ListingsCard';
 import CardGroup from 'react-bootstrap/CardGroup';
@@ -9,6 +11,8 @@ import Col from 'react-bootstrap/Col';
 const Listings = () => {
 
     const [property, setProperty] = useState([])
+    const [listingId, setListingId] = useState('')
+    const [imageUrl, setImageUrl] = useState('')
     const [listForm, setListForm] = useState({
         address: '',
         description:'',
@@ -17,14 +21,41 @@ const Listings = () => {
         bath: '',
         media:''
     })
-    // const uploadImage = (files) => {
-    //     console.log(file[0])
+
+    // const handleUpdatePost = () => {
+    //     console.log(`imageUrl: ${imageUrl}`)
+
+    //     const file = {
+    //         image: imageUrl,
+    //     }
+
+    //     fetch(`/listings${listingId}`, {
+    //         method: 'PATCH',
+    //         header: {
+    //             'Content-Type':'application/json',
+    //             'Accept':'application/json'
+    //         },
+    //         body: JSON.stringify(file)
+    //     })
+    //     .then(r => r.json())
     // }
 
     const handleChange = (e) => {
         setListForm({
             ...listForm,
             [e.target.name]: e.target.value,
+        })
+    }
+
+    const uploadImage = () => {
+        const formData = new FormData()
+        formData.append('file', listForm.media)
+        formData.append('uploadPreset', 'sb8uogjx')
+
+        Axios.post('https//api.cloudinary.com/v1_1/da3q0bau5/image/upload', formData)
+        .then(r => {
+            setImageUrl(r.data.url)
+            console.log(`response url: ${r}`)
         })
     }
 
@@ -46,7 +77,12 @@ const Listings = () => {
             body: JSON.stringify(listFormInfo)
         })
         .then(r => r.json())
-        .then(listData => setProperty([...property,listData]))
+        .then(listData => {
+            setProperty([...property,listData])
+            uploadImage()
+            setListingId(listData.id)
+        })
+
     }
 
     useEffect(() => {
@@ -54,6 +90,29 @@ const Listings = () => {
         .then(r => r.json())
         .then(propData => setProperty(propData))
     }, [])
+
+    useEffect(() => {
+        if (imageUrl) {
+            const handleUpdatePost = () => {
+                console.log(`imageUrl: ${imageUrl}`)
+        
+                const file = {
+                    image: imageUrl,
+                }
+        
+                fetch(`/listings${listingId}`, {
+                    method: 'PATCH',
+                    header: {
+                        'Content-Type':'application/json',
+                        'Accept':'application/json'
+                    },
+                    body: JSON.stringify(file)
+                })
+                .then(r => r.json())
+            }
+            handleUpdatePost();
+        }
+    }, [imageUrl, listingId])
 
     const listedProperties = property.map((listedP) => (
             <ListingsCard listing={listedP} listings={property} setListings={setProperty}/>

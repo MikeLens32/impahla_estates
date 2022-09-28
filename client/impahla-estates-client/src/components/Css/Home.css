@@ -1,3 +1,12 @@
+.Home-Card-Container {
+    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(3rem, 18rem));
+    gap: 4rem
+}
+
 .Title {
-    
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
 }
