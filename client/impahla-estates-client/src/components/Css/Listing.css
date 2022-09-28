@@ -1,0 +1,6 @@
+.listed-properties {
+    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(3rem, 18rem));
+    gap: 4rem
+}

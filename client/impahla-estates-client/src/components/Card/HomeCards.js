@@ -20,9 +20,9 @@ const HomeCards = ({ title, imageUrl, body, path }) => {
                 </div>
                 <div className='btn' style={{ justifyItems:'center' }}>
                     <button onClick={() => history(path)}>
-                        <a>
+                        <p>
                             View More
-                        </a>
+                        </p>
                     </button>
                 </div>
             </div>

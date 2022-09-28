@@ -1,5 +1,6 @@
 import Axios from 'axios';
-import { Image } from 'cloudinary-react'
+// import { Image } from 'cloudinary-react'
+import './Css/Listing.css'
 import React, { useEffect, useState } from 'react';
 import ListingsCard from './Card/ListingsCard';
 import CardGroup from 'react-bootstrap/CardGroup';
@@ -152,9 +153,10 @@ const Listings = () => {
                 <br/>
                 <Button variant="primary" type="submit">Submit</Button>
             </Form>
-            <CardGroup>
+            <div className='listed-properties' style={{ border:'flex', flexWrap:'wrap' }}>
                 {listedProperties}
-            </CardGroup>
+            </div>
+                
         </div>
     )
 }

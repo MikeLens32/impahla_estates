@@ -23,14 +23,13 @@
     height: 200px;
 }
 
-.card-content h3,p {
+.card-title, .card-body {
     margin: 0;
     padding: 0;
 }
 
-.card-content a {
+.btn p {
     text-transform: uppercase;
-    color: whitesmoke;
     text-decoration: none;
     font-weight: bold;
 }
