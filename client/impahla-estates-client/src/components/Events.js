@@ -2,11 +2,12 @@ import React, { useContext, useEffect, useState  } from 'react';
 import { UserContext } from '../context/user';
 // import { useParams } from '/react-router-dom'
 import EventsCards from './Card/EventsCards';
-import CardGroup from 'react-bootstrap/CardGroup';
+// import CardGroup from 'react-bootstrap/CardGroup';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import './Css/Event.css'
 
 const Events = () => {
 
@@ -66,6 +67,7 @@ const Events = () => {
 
     return (
         <div>
+            <img className='' src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.atulhost.com%2Fwp-content%2Fuploads%2F2016%2F06%2Fbusiness-networking-event.jpg&f=1&nofb=1&ipt=ffe15b72274c1b7798e156d127dfbd0e82b03ef1cc633a23d77e4f08ab1a6928&ipo=images' alt='Event-Banner'/>
             <h1>Events</h1>
             <Form onSubmit={handleSubmit}>
             <Row>
@@ -83,9 +85,9 @@ const Events = () => {
             </Row>
                 <Button variant="primary" type="submit">Submit</Button>
             </Form>
-            <CardGroup>
+            <div className='event-cards' style={{ border:'flex', flexWrap:'wrap' }}>
                 {showEvents}
-            </CardGroup>
+            </div>
         </div>
     )
 }

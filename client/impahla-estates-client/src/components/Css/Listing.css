@@ -1,6 +1,13 @@
 .listed-properties {
-    justify-content: center;
     display: grid;
-    grid-template-columns: repeat(4, minmax(3rem, 18rem));
-    gap: 4rem
+    grid-template-columns: repeat(2, minmax(3rem, 26rem));
+    gap: 6rem;
+    justify-content: center;
+    padding: 0%;
+}
+
+.listing-banner {
+    width: 100vw;
+    height: 50vh;
+    position: relative;
 }

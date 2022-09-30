@@ -1,0 +1,7 @@
+.event-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(3rem, 26rem));
+    gap: 4rem;
+    justify-content: center;
+    padding: 0%;
+}

@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-// import './App.css';
+import './App.css';
 import { useNavigate } from 'react-router';
 import { UserContext } from './context/user';
 import Home from './components/Home';
@@ -29,7 +29,7 @@ function App() {
   }, [user, history])
 
   return (
-    <div>
+    <div className='app-container'> 
         <NavBar />
         <Routes>
           < Route  exact path="/" element={<Login/>}/>

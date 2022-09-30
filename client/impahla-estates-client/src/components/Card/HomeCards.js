@@ -16,7 +16,7 @@ const HomeCards = ({ title, imageUrl, body, path }) => {
                     <h3>{title}</h3>
                 </div>
                 <div className='card-body'>
-                    <p>{body}</p>
+                    <p className='body'>{body}</p>
                 </div>
                 <div className='btn' style={{ justifyItems:'center' }}>
                     <button onClick={() => history(path)}>

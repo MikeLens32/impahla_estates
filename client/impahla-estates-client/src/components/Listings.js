@@ -1,9 +1,7 @@
-import Axios from 'axios';
-// import { Image } from 'cloudinary-react'
 import './Css/Listing.css'
 import React, { useEffect, useState } from 'react';
 import ListingsCard from './Card/ListingsCard';
-import CardGroup from 'react-bootstrap/CardGroup';
+// import CardGroup from 'react-bootstrap/CardGroup';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -12,8 +10,6 @@ import Col from 'react-bootstrap/Col';
 const Listings = () => {
 
     const [property, setProperty] = useState([])
-    const [listingId, setListingId] = useState('')
-    const [imageUrl, setImageUrl] = useState('')
     const [listForm, setListForm] = useState({
         address: '',
         description:'',
@@ -23,40 +19,10 @@ const Listings = () => {
         media:''
     })
 
-    // const handleUpdatePost = () => {
-    //     console.log(`imageUrl: ${imageUrl}`)
-
-    //     const file = {
-    //         image: imageUrl,
-    //     }
-
-    //     fetch(`/listings${listingId}`, {
-    //         method: 'PATCH',
-    //         header: {
-    //             'Content-Type':'application/json',
-    //             'Accept':'application/json'
-    //         },
-    //         body: JSON.stringify(file)
-    //     })
-    //     .then(r => r.json())
-    // }
-
     const handleChange = (e) => {
         setListForm({
             ...listForm,
             [e.target.name]: e.target.value,
-        })
-    }
-
-    const uploadImage = () => {
-        const formData = new FormData()
-        formData.append('file', listForm.media)
-        formData.append('uploadPreset', 'sb8uogjx')
-
-        Axios.post('https//api.cloudinary.com/v1_1/da3q0bau5/image/upload', formData)
-        .then(r => {
-            setImageUrl(r.data.url)
-            console.log(`response url: ${r}`)
         })
     }
 
@@ -80,8 +46,6 @@ const Listings = () => {
         .then(r => r.json())
         .then(listData => {
             setProperty([...property,listData])
-            uploadImage()
-            setListingId(listData.id)
         })
 
     }
@@ -92,36 +56,14 @@ const Listings = () => {
         .then(propData => setProperty(propData))
     }, [])
 
-    useEffect(() => {
-        if (imageUrl) {
-            const handleUpdatePost = () => {
-                console.log(`imageUrl: ${imageUrl}`)
-        
-                const file = {
-                    image: imageUrl,
-                }
-        
-                fetch(`/listings${listingId}`, {
-                    method: 'PATCH',
-                    header: {
-                        'Content-Type':'application/json',
-                        'Accept':'application/json'
-                    },
-                    body: JSON.stringify(file)
-                })
-                .then(r => r.json())
-            }
-            handleUpdatePost();
-        }
-    }, [imageUrl, listingId])
-
     const listedProperties = property.map((listedP) => (
             <ListingsCard listing={listedP} listings={property} setListings={setProperty}/>
     ))
 
     return (
         <div>
-            <h1>Listings</h1>
+            <img className='listing-banner' alt='banner' src='https://www.medishare.com/hs-fs/hubfs/Medishare%20Blog%20Assets/AdobeStock_44460269.jpeg?width=1200&name=AdobeStock_44460269.jpeg'/>
+            <h1 className='listing-title'>Listings</h1>
             <Form onSubmit={handleSubmit}>
                 <Row className="mb-3">
                     <Form.Group as={Col} controlId="formGridEmail" onChange={handleChange} value={listForm.address}>

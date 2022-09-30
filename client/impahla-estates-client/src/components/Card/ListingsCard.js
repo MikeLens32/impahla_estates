@@ -39,23 +39,8 @@ const ListingsCard = ({ listing, listings, setListings }) => {
                     </div>)
                     : ''}
                 </div>
-                </div>
             </div>
-            {/* <Card className="porpety-card" style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={listing.media} /> 
-                <Card.Body>
-                    <Card.Title>{listing.address}</Card.Title>
-                    <Card.Text>{listing.description}</Card.Text>
-                    <Card.Text>Price: {listing.price}K</Card.Text>
-                    <Card.Text>Bedroom: {listing.bedroom}</Card.Text>
-                    <Card.Text>Bath: {listing.bath}</Card.Text>
-                </Card.Body>
-                {user.id === listing.creator_id ?(
-                <Card.Footer className="text-muted">
-                    <button onClick={() => handleDelete(listing.id)}>Remove</button>
-                    <button onClick={() => history(`/listings/${listing.id}/edit`)}>Edit</button>
-                </Card.Footer>) : ''}
-            </Card> */}
+        </div>
         </div>
     )
 }
