@@ -3,16 +3,14 @@ import { UserContext } from '../context/user';
 // import { useParams } from '/react-router-dom'
 import EventsCards from './Card/EventsCards';
 // import CardGroup from 'react-bootstrap/CardGroup';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import './Css/Event.css'
+import EventsModal from './EventsModal';
 
 const Events = () => {
 
-    const { user } = useContext( UserContext )
     // const { id } = useParams()
+    const { user } = useContext( UserContext )
+    const [ openModal, setOpenModal ] = useState(false)
     const [listedEvent, setListedEvent] = useState([])
     const [eventForm, setEventForm] = useState({
         text: '',
@@ -50,6 +48,7 @@ const Events = () => {
                 media: '',
                 date:''
             })
+            setOpenModal(false)
         })
     }
 
@@ -67,24 +66,23 @@ const Events = () => {
 
     return (
         <div>
+            
             <img className='event-image' src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.atulhost.com%2Fwp-content%2Fuploads%2F2016%2F06%2Fbusiness-networking-event.jpg&f=1&nofb=1&ipt=ffe15b72274c1b7798e156d127dfbd0e82b03ef1cc633a23d77e4f08ab1a6928&ipo=images' alt='Event-Banner'/>
-            <h1>Events</h1>
-            <Form onSubmit={handleSubmit}>
-            <Row>
-                <Form.Group as={Col} onChange={handleChange} value={eventForm.text}>
-                <Form.Control required name='text' tepy='text' placeholder="Event Title" />
-                </Form.Group>
-
-                <Form.Group as={Col} onChange={handleChange} value={eventForm.date}>
-                <Form.Control required name='date' type='date' placeholder="Date" />
-                </Form.Group>
-
-                <Form.Group as={Col} onChange={handleChange} value={eventForm.media}>
-                <Form.Control name='media' type='file' placeholder="Media" />
-                </Form.Group>
-            </Row>
-                <Button variant="primary" type="submit">Submit</Button>
-            </Form>
+            <h1 className='event-title'>Events</h1>
+            <p className='event-slogan'>If You're New To World Of Real Estate Or Someone Seasoned, Look No Further.</p>
+            <div className='event-modal-btn'>
+                <button  onClick={() => setOpenModal(true) } >Post Event</button>
+            </div>
+            <div>
+                <EventsModal 
+                open={openModal} 
+                handleSubmit={handleSubmit} 
+                handleChange={handleChange} 
+                eventForm={eventForm}
+                onClose={() => setOpenModal(false)}
+                />
+            </div>
+            <div className='event-line'></div>
             <div className='event-cards' style={{ border:'flex', flexWrap:'wrap' }}>
                 {showEvents}
             </div>

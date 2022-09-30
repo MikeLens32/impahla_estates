@@ -32,7 +32,7 @@ const EventsCards = ({ event, events, setEvents, user }) => {
                 {user.id === event.host_id ?(
                     <div className='btn'>
                         <button onClick={() => handleDelete(event.id)}><p>Remove</p></button>
-                        <button onClick={() => history(`/listings/${event.id}/edit`)}><p>Edit</p></button>
+                        <button onClick={() => history(`/events/${event.id}/edit`)}><p>Edit</p></button>
                     </div>)
                     : ''}
                 </div>

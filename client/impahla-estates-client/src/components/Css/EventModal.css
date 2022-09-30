@@ -1,0 +1,52 @@
+.event-modal-overlay {
+    display: flex;
+    justify-content: center;
+    padding-top: 15%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1040;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+}
+
+.event-modal-title {
+    color: white;
+}
+
+.event-text {
+    margin: 1rem
+}
+
+.edit-modal-form {
+    border-radius: 1rem;
+    padding: 5%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    max-width: 500px;
+    width: 90%;
+    position: fixed;
+    box-shadow: 0px 0px 15px -5px #aaa;
+}
+
+.event-modal-label {
+    color: white;
+}
+
+.bold {
+    color: white;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: bold;
+    /* display: flex; */
+    justify-content: space-between;
+    padding: 0.3rem;
+    border-radius: 0.2rem;
+    margin: 3px;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    cursor: pointer;
+}

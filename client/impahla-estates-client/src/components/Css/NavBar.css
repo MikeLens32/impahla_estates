@@ -8,7 +8,8 @@
 }
 
 .navbar {
-    background: rgb(255, 255, 51);
+    background: rgb(254,255,219);
+    background: linear-gradient(90deg, rgba(254,255,219,1) 0%, rgba(255,244,157,1) 58%, rgba(255,195,0,1) 100%);
 }
 
 .navbar-user {

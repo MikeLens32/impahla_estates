@@ -1,15 +1,12 @@
 import './Css/Listing.css'
 import React, { useEffect, useState } from 'react';
 import ListingsCard from './Card/ListingsCard';
-// import CardGroup from 'react-bootstrap/CardGroup';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import ListingModal from './ListingModal';
 
 const Listings = () => {
 
     const [property, setProperty] = useState([])
+    const [ openModal, setOpenModal ]= useState(false)
     const [listForm, setListForm] = useState({
         address: '',
         description:'',
@@ -46,6 +43,7 @@ const Listings = () => {
         .then(r => r.json())
         .then(listData => {
             setProperty([...property,listData])
+            setOpenModal(false)
         })
 
     }
@@ -64,37 +62,19 @@ const Listings = () => {
         <div>
             <img className='listing-banner' alt='banner' src='https://www.medishare.com/hs-fs/hubfs/Medishare%20Blog%20Assets/AdobeStock_44460269.jpeg?width=1200&name=AdobeStock_44460269.jpeg'/>
             <h1 className='listing-title'>Listings</h1>
-            <Form onSubmit={handleSubmit}>
-                <Row className="mb-3">
-                    <Form.Group as={Col} controlId="formGridEmail" onChange={handleChange} value={listForm.address}>
-                    <Form.Control required name='address' type="address" placeholder="Enter address" />
-                    </Form.Group>
-
-                    <Form.Group as={Col} controlId="formGridPassword" onChange={handleChange} value={listForm.media}>
-                    <Form.Control name='media' type="file" />
-                    </Form.Group>
-                </Row>
-
-                <Form.Group className="mb-3" controlId="formGridAddress1">
-                    <Form.Control requied name='description' placeholder="Description" onChange={handleChange} value={listForm.description} />
-                </Form.Group>
-
-                <Row className="mb-3">
-                    <Form.Group as={Col} controlId="formGridEmail" onChange={handleChange} value={listForm.price}>
-                    <Form.Control required name='price' type="number" min='1' placeholder="Price" />
-                    </Form.Group>
-
-                    <Form.Group as={Col} controlId="formGridPassword" onChange={handleChange} value={listForm.bedroom}>
-                    <Form.Control required name='bedroom' type="number" min='1' placeholder="Bedroom(s)" />
-                    </Form.Group>
-
-                    <Form.Group as={Col} controlId="formGridPassword" onChange={handleChange} value={listForm.bath}>
-                    <Form.Control required name='bath' type="number" min='1' placeholder="Bath(s)" />
-                    </Form.Group>
-                </Row>
-                <br/>
-                <Button variant="primary" type="submit">Submit</Button>
-            </Form>
+            <div className='listing-modal-btn'> 
+                <button onClick={() => setOpenModal(true)}>Post Listing</button>
+            </div>
+            <div>
+                <ListingModal 
+                open={openModal}
+                onClose={() => setOpenModal(false)}
+                handleChange={handleChange} 
+                handleSubmit={handleSubmit}
+                listForm={listForm}
+                />
+            </div>
+            <div className='listing-line'></div>
             <div className='listed-properties' style={{ border:'flex', flexWrap:'wrap' }}>
                 {listedProperties}
             </div>
