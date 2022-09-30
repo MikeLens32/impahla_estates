@@ -2,7 +2,7 @@
     width: 300px;
     flex-direction: grid;
     overflow: hidden;
-    margin: 0vh 3vh 5vh 3vh;
+    margin: 8vh 3vh 5vh 3vh;
     box-shadow: 0px 0px 15px -5px;
     transition: 0.5s;
     animation: ease-in-out;

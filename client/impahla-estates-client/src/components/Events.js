@@ -67,7 +67,7 @@ const Events = () => {
 
     return (
         <div>
-            <img className='' src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.atulhost.com%2Fwp-content%2Fuploads%2F2016%2F06%2Fbusiness-networking-event.jpg&f=1&nofb=1&ipt=ffe15b72274c1b7798e156d127dfbd0e82b03ef1cc633a23d77e4f08ab1a6928&ipo=images' alt='Event-Banner'/>
+            <img className='event-image' src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.atulhost.com%2Fwp-content%2Fuploads%2F2016%2F06%2Fbusiness-networking-event.jpg&f=1&nofb=1&ipt=ffe15b72274c1b7798e156d127dfbd0e82b03ef1cc633a23d77e4f08ab1a6928&ipo=images' alt='Event-Banner'/>
             <h1>Events</h1>
             <Form onSubmit={handleSubmit}>
             <Row>

@@ -1,4 +1,5 @@
 .Home-Card-Container {
+    margin-top: 3vh;
     justify-content: center;
     display: grid;
     grid-template-columns: repeat(3, minmax(3rem, 18rem));
@@ -6,7 +7,38 @@
 }
 
 .Title {
-    justify-self: center;
+    color: white;
+    display: flex;
     justify-content: center;
-    align-items: center;
+}
+
+.Text {
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.Line {
+    flex: 1;
+    height: 1px;
+    background-color: white;
+    margin: 0ch 8vh 2vh 8vh;
+}
+
+.Card-Container {
+    background-color: rgb(29, 29, 29);
+}
+
+.Footer{
+    color: white;
+    margin-top: 4vh;
+    display:flex;
+    justify-content: center;
+}
+
+.Tag {
+    padding-bottom: 4vh;
+    display:flex;
+    justify-content: center;
+    background-color: black;
 }
