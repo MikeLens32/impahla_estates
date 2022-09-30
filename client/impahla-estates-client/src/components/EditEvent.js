@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import './Css/EditListing.css'
 
 const EditEvent = () => {
 
@@ -40,15 +41,15 @@ const EditEvent = () => {
     }, [id])
 
     return (
-        <div>
-            <h1>Edit Title</h1>
+        <div className='edit-listing-container'>
+            <h1 style={{ color:'white'}}>Edit Title</h1>
             <Form onSubmit={handleSubmit}>
                 <Form.Group  onChange={handleChange} value={eventName}>
                     <FloatingLabel controlId="floatingTextarea2" label="Change Event Name">
                     <Form.Control name={eventName} type="text" placeholder="Change Event Name" style={{ height: '100px' }} />
                     </FloatingLabel>
-                    <Button variant="primary" type="submit">Change</Button>
-                    <Button variant="primary" onClick={() => history('/events')}>Cancel</Button>
+                    <Button variant="dark" type="submit">Change</Button>
+                    <Button variant="dark" onClick={() => history('/events')}>Cancel</Button>
                 </Form.Group>
             </Form>
         </div>

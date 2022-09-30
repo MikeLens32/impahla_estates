@@ -44,37 +44,6 @@ const ListingModal = ({ open, onClose, handleChange, handleSubmit, listForm }) =
                     <button onClick={onClose} className='bold'>Close</button>
                 </div>
             </form>
-            {/* <Form >
-                <Row className="mb-3">
-                    <Form.Group as={Col} controlId="formGridEmail" onChange={handleChange} value={listForm.address}>
-                    <Form.Control required name='address' type="address" placeholder="Enter address" />
-                    </Form.Group>
-
-                    <Form.Group as={Col} controlId="formGridPassword" onChange={handleChange} value={listForm.media}>
-                    <Form.Control name='media' type="file" />
-                    </Form.Group>
-                </Row>
-
-                <Form.Group className="mb-3" controlId="formGridAddress1">
-                    <Form.Control requied name='description' placeholder="Description" onChange={handleChange} value={listForm.description} />
-                </Form.Group>
-
-                <Row className="mb-3">
-                    <Form.Group as={Col} controlId="formGridEmail" onChange={handleChange} value={listForm.price}>
-                    <Form.Control required name='price' type="number" min='1' placeholder="Price" />
-                    </Form.Group>
-
-                    <Form.Group as={Col} controlId="formGridPassword" onChange={handleChange} value={listForm.bedroom}>
-                    <Form.Control required name='bedroom' type="number" min='1' placeholder="Bedroom(s)" />
-                    </Form.Group>
-
-                    <Form.Group as={Col} controlId="formGridPassword" onChange={handleChange} value={listForm.bath}>
-                    <Form.Control required name='bath' type="number" min='1' placeholder="Bath(s)" />
-                    </Form.Group>
-                </Row>
-                <br/>
-                <Button variant="primary" type="submit">Submit</Button>
-            </Form> */}
         </div>
     )
 }

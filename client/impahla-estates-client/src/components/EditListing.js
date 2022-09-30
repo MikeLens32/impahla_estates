@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import './Css/EditListing.css'
 
 const EditListing = () => {
 
@@ -62,8 +63,8 @@ const EditListing = () => {
     console.log(listForm.address)
 
     return (
-        <div>
-            <h1>Edit Listing</h1>
+        <div className='edit-listing-container'>
+            <h1 style={{ color:'white'}}>Edit Listing</h1>
             <Form onSubmit={handleSubmit}>
                 <Row className="mb-3">
                     <Form.Group as={Col} controlId="formGridEmail" onChange={handleChange} value={listForm.address}>
@@ -93,8 +94,8 @@ const EditListing = () => {
                     </Form.Group>
                 </Row>
                 <br/>
-                <Button variant="primary" type="submit">Submit</Button>
-                <Button variant="primary" onClick={() => history('/listings')}>Cancel</Button>
+                <Button variant="dark" type="submit">Submit</Button>
+                <Button variant="dark" onClick={() => history('/listings')}>Cancel</Button>
             </Form>
         </div>
     )
