@@ -13,8 +13,7 @@ class CommentsController < ApplicationController
     end
     
     def create
-        byebug
-        comment = Comment.create(com_params)
+        comment = Comment.new(com_params)
         comment.post_id = params[:post_id]
         comment.user_id = session[:user_id]
         comment.save

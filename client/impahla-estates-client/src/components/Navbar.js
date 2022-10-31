@@ -9,6 +9,7 @@ import Home from './Home'
 import Events from './Events'
 import Listings from './Listings'
 import Networking from './Networking'
+import Contact from './Contact';
 
 const NavBar = () => {
 
@@ -24,6 +25,7 @@ const NavBar = () => {
                     <Nav.Link className="navbar-links-events" as={Link} element={<Events />} to={"/events"}><p>Events</p></Nav.Link>
                     <Nav.Link className="navbar-links-listings" as={Link} element={<Listings />} to={"/listings"}><p>Listings</p></Nav.Link>
                     <Nav.Link className="navbar-links-networking" as={Link} element={<Networking />} to={"/networking"}><p>Networking</p></Nav.Link>
+                    <Nav.Link className="navbar-links-contact" as={Link} element={<Contact />} to={"/contact"}><p>Contact</p></Nav.Link>
                 </Nav>)}
                 </Container>
             </Navbar>

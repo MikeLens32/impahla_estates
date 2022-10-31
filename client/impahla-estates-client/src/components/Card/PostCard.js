@@ -1,12 +1,8 @@
 // import { v4 as uuid } from 'uuid';
-import Card from 'react-bootstrap/Card';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import CommentCard from './CommentCard'
 import React, { useState } from 'react';
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import CommentCard from './CommentCard';
-
-const PostCard = ({ post, setPosts }) => {
+import '../Css/PostCards.css'
+const PostCard = ({ index, post, setPosts }) => {
 
     // const unique_id = uuid()
     const [postComments, setPostComments] = useState({
@@ -36,18 +32,20 @@ const PostCard = ({ post, setPosts }) => {
         })
         .then(r => r.json())
         .then(comData => {
-            const postIndex = post.findIndex((postObj) => {
-                return post.id === postObj.id
-            })
+            // debugger
+            // const postIndex = post.findIndex((postObj) => {
+            //     return post.id === postObj.id
+            // })
             const finalPost = {
                 ...post,
                 comments: [...post.comments, comData]
             }
-            setPosts([
-                ...post.slice(0, postIndex),
-                finalPost,
-                ...post.slice(postIndex +1)
-            ])
+            setPosts(finalPost, index)
+            // setPosts([
+            //     ...post.comments.slice(0, index),
+            //     finalPost,
+            //     ...post.comments.slice(index +1)
+            // ])
             setPostComments({
                 post_id: '',
                 text: ''
@@ -59,24 +57,32 @@ const PostCard = ({ post, setPosts }) => {
 
     return (
         <div>
-            <Card key={post.id} style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={post.media} />
-                <Card.Body>
-                    <Card.Text>{post.text}</Card.Text>
-                </Card.Body>
-                <Form onSubmit={e => handleSubmit(e, post)}>
-                    <Form.Group onChange={handleChange} value={postComments.text}>
-                        <FloatingLabel   controlId="floatingTextarea2" label="Comments">
-                        <Form.Control name='text' type="textarea" placeholder="Comment" style={{ height: '100px' }} />
-                        </FloatingLabel>
-                        <Button variant="primary" type="submit">Comment</Button>
-                    </Form.Group>
-                </Form>
-                
+            <div className='post-card'>
+                <div className='post-image'>
+                    <img src={post.media} alt={post.id}/>
+                </div>
+                <div className='post-content'>
+                    <p className='post-text'>{post.text}</p>
+                </div>
+                <div className='post-line'></div>
+                <div className='post-comments'>
+                    <form className='post-comment-form' onSubmit={e => handleSubmit(e, post)}>
+                        <div className='post-comment-label'>
+                            <label>Comments: </label>
+                            <input name='text' type='textarea' onChange={handleChange} value={postComments.text}/>
+                        </div>
+
+                        <div className='comment-btn'>
+                            <input className='btn' type='submit' value='Comment' style={{ color:'white'}}/>
+                        </div>
+                    </form>
+                </div>
+                <div>
                 {post.comments.map((comment) => (
-                    <CommentCard comments={comment} />
+                    <CommentCard key={comment.id} comment={comment} />
                 ))}
-            </Card>
+                </div>
+            </div>
         </div>
     )
 }

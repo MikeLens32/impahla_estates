@@ -1,0 +1,10 @@
+.comment-line {
+    flex: 1;
+    height: 1px;
+    background-color: white;
+    opacity: 10%;
+}
+
+.comment-text {
+    color: white
+}

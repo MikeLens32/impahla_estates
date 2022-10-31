@@ -25,8 +25,8 @@ const ListingsCard = ({ listing, listings, setListings }) => {
             <div className='propert-image'>
                 <img src={listing.media} alt={listing.address}/>
             </div>
-            <div className='pproperty-content'>
-                <div className='property-address' style={{ color:'white'}}><h4>{listing.address}</h4></div>
+            <div className='property-content'>
+                <div className='property-address'><h4>{listing.address}</h4></div>
                 <div className='property-description'><p>Description:{listing.description}</p></div>
                 <div className='property-price'><p>Price: {listing.price}k</p></div>
                 <div className='property-bedroom'><p>Bedrooms: {listing.bedroom}</p></div>

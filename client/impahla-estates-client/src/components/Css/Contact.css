@@ -1,0 +1,17 @@
+.Form {
+    margin-bottom: 10vh;
+    margin-left: 15vh;
+    justify-content: center;
+}
+
+
+.Text-Field {
+    margin-bottom: 30vh;
+}
+
+.contact-email {
+    margin-top: 20%;
+    padding-bottom: 25%;
+    /* padding: 4rem; */
+    background: black;
+}

@@ -1,0 +1,50 @@
+.networking-cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(3rem, 26rem));
+    gap: 6rem;
+    justify-content: center;
+    padding: 0%;
+}
+
+.networking-banner {
+    width: 100vw;
+    height: 50vh;
+    position: relative;
+}
+
+.networking-modal-btn {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.networking-modal-btn button {
+    margin-bottom: 3vh;
+    color: white;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: bold;
+    /* display: flex; */
+    justify-content: space-between;
+    padding: 0.3rem;
+    border-radius: 0.2rem;
+    margin: 3px;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    cursor: pointer;
+}
+
+.networking-title {
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.networking-line {
+    flex: 1;
+    height: 1px;
+    background-color: white;
+    margin: 0ch 8vh 6vh 8vh;
+}

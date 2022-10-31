@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import './App.css';
 import { useNavigate } from 'react-router';
 import { UserContext } from './context/user';
+import Contact from './components/Contact'
 import Home from './components/Home';
 import NavBar from './components/NavBar';
 import Login from './components/Login';
@@ -34,6 +35,7 @@ function App() {
         <Routes>
           < Route  exact path="/" element={<Login/>}/>
           < Route  exact path="/home" element={<Home/>}/>
+          < Route  exact path="/contact" element={<Contact/>}/>
           < Route  exact path="/networking" element={<Networking/>}/>
           < Route  exact path="/events" element={<Events/>}/>
           < Route  exact path="/events/:id/edit" element={<EditEvent/>}/>

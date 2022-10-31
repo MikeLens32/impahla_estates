@@ -1,16 +1,17 @@
 import React from 'react';
-import ListGroup from 'react-bootstrap/ListGroup';
+import '../Css/CommentCards.css'
 
-const CommentCard = ({ comments }) => {
+const CommentCard = ({ comment }) => {
 
 
 
     return (
-        <>
-            <ListGroup key={comments.id} className="list-group-flush">
-                <ListGroup.Item>{comments.text}</ListGroup.Item>
-            </ListGroup>
-        </>
+        <div key={comment.id}>
+            <div className='comment-text'>
+                <p>{comment.text}</p>
+            </div>
+            <div className='comment-line'></div>
+        </div>
     )
 }
 

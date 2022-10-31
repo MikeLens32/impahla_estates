@@ -21,7 +21,7 @@
     cursor: pointer;
 }
 
-.navbar-links-home p, .navbar-links-events p, .navbar-links-listings p, .navbar-links-networking p {
+.navbar-links-home p, .navbar-links-events p, .navbar-links-listings p, .navbar-links-networking p, .navbar-links-contact p {
     color: black;
     padding: 0;
     margin: 0;
