@@ -1,6 +1,6 @@
 import React from 'react';
 import './Css/EventModal.css'
-const EventsModal = ({ open, onClose, handleSubmit, handleChange, eventForm }) => {
+const EventsModal = ({ open, onClose, handleSubmit, handleChange, eventForm, media, handleMedia }) => {
 
     if(!open) return null
 
@@ -22,7 +22,7 @@ const EventsModal = ({ open, onClose, handleSubmit, handleChange, eventForm }) =
                 </div>
                 <div>
                     <label className='event-modal-label'>Media</label>
-                    <input className='bold' name='media' type='file' onChange={handleChange} value={eventForm.media}/>
+                    <input className='bold' name='media' type='file' onChange={handleMedia} value={media}/>
                     <br/>
                 </div>
                 

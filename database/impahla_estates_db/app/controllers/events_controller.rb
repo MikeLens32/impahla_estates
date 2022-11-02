@@ -13,8 +13,10 @@ class EventsController < ApplicationController
     end
     
     def create
+        # byebug
         result = Cloudinary::Uploader.upload(params[:media])
-        event = Event.create(params.permit(:id, :text, :date, :host_id, media:result['url']))
+        create_params = params.permit(:id, :text, :date, :host_id, media:result['url'])
+        event = Event.create(event_params)
         event.host_id = session[:user_id]
         if event.save
             render json: event, status: :created

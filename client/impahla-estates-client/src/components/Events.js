@@ -12,9 +12,9 @@ const Events = () => {
     const { user } = useContext( UserContext )
     const [ openModal, setOpenModal ] = useState(false)
     const [listedEvent, setListedEvent] = useState([])
+    const [formMedia, setFormMedia] = useState('')
     const [eventForm, setEventForm] = useState({
         text: '',
-        media: '',
         date: ''
     })
 
@@ -25,12 +25,23 @@ const Events = () => {
         })
     }
 
+    //Creating another change specifically for the media so it can upload to Cloudinary and creating a state to use in the handle submit
+    const handleMediaChange = (e) => {
+        setFormMedia({
+            ...formMedia,
+            [e.target.name]:e.target.files[0]
+        })
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
+        //creating FormData Object for the media and append it to the AJAX request using the state for the image
+        const formData = new FormData()
+        formData.append('file', formMedia)
         const newEventForm = {
             host_id: user.id,
             text: eventForm.text,
-            media: eventForm.media,
+            media: formData,
             date: eventForm.date
         }
         fetch('/events', {
@@ -78,6 +89,8 @@ const Events = () => {
                 open={openModal} 
                 handleSubmit={handleSubmit} 
                 handleChange={handleChange} 
+                media={formMedia}
+                handleMedia={handleMediaChange}
                 eventForm={eventForm}
                 onClose={() => setOpenModal(false)}
                 />
