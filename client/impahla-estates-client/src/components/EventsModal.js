@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import './Css/EventModal.css'
-const EventsModal = ({ open, onClose, handleSubmit, handleChange, eventForm, media, handleMedia }) => {
+const EventsModal = ({ open, onClose, handleSubmit, handleChange, eventForm }) => {
+
+    const formMedia = useRef();
 
     if(!open) return null
 
@@ -8,7 +10,7 @@ const EventsModal = ({ open, onClose, handleSubmit, handleChange, eventForm, med
         <div className='event-modal-overlay'>
             
             <form className='edit-modal-form' style={{ border:'flex', flexWrap:'wrap' }}
-             onSubmit={handleSubmit}>
+             onSubmit={e => handleSubmit(e, formMedia)}>
                 <h4 className='event-modal-title'>Event Form</h4>
                 <div className='event-modal-label'>
                      <label >Event Title</label>
@@ -22,7 +24,7 @@ const EventsModal = ({ open, onClose, handleSubmit, handleChange, eventForm, med
                 </div>
                 <div>
                     <label className='event-modal-label'>Media</label>
-                    <input className='bold' name='media' type='file' onChange={handleMedia} value={media}/>
+                    <input className='bold' name='media' type='file' ref={formMedia}/>
                     <br/>
                 </div>
                 

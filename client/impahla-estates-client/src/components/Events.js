@@ -5,6 +5,7 @@ import EventsCards from './Card/EventsCards';
 // import CardGroup from 'react-bootstrap/CardGroup';
 import './Css/Event.css'
 import EventsModal from './EventsModal';
+// import axios from 'axios';
 
 const Events = () => {
 
@@ -12,10 +13,10 @@ const Events = () => {
     const { user } = useContext( UserContext )
     const [ openModal, setOpenModal ] = useState(false)
     const [listedEvent, setListedEvent] = useState([])
-    const [formMedia, setFormMedia] = useState('')
     const [eventForm, setEventForm] = useState({
         text: '',
-        date: ''
+        date: '',
+        media: ''
     })
 
     const handleChange = (e) => {
@@ -25,43 +26,44 @@ const Events = () => {
         })
     }
 
-    //Creating another change specifically for the media so it can upload to Cloudinary and creating a state to use in the handle submit
-    const handleMediaChange = (e) => {
-        setFormMedia({
-            ...formMedia,
-            [e.target.name]:e.target.files[0]
-        })
-    }
+    const handleSubmit = (e, formMedia) => {
+        e.preventDefault();
+    
+        // const formInfoData = new FormData();
+        // formInfoData.append("file", formMedia.current.files[0]);
+        // formInfoData.append("upload_preset", "sb8uogjx");
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        //creating FormData Object for the media and append it to the AJAX request using the state for the image
-        const formData = new FormData()
-        formData.append('file', formMedia)
-        const newEventForm = {
-            host_id: user.id,
-            text: eventForm.text,
-            media: formData,
-            date: eventForm.date
-        }
-        fetch('/events', {
-            method: 'POST',
-            headers:{
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(newEventForm)
+        const formData = new FormData();
+        formData.append("host_id", user.id);
+        formData.append("media", formMedia.current.files[0]);
+        formData.append("text", eventForm.text);
+        formData.append("data", eventForm.date);
+
+
+        //send image to cloudinary
+        // axios.post("https://api.cloudinary.com/v1_1/da3q0bau5/image/upload", formInfoData)
+        // .then((response) => {
+        //     console.log(response.data.secure_url)
+        // })
+        // .catch((err) => {
+        //     console.log(err)
+        // })
+
+        fetch("/events", {
+          method: "POST",
+          body: formData,
         })
-        .then(r => r.json())
-        .then(eventData => {
-            setListedEvent([...listedEvent, eventData])
+          .then((r) => r.json())
+          .then((eventData) => {
+            setListedEvent([...listedEvent, eventData]);
             setEventForm({
-                text:'',
-                media: '',
-                date:''
-            })
-            setOpenModal(false)
-        })
-    }
+              text: "",
+              date: "",
+              media: ''
+            });
+            setOpenModal(false);
+          });
+      };
 
     useEffect(() => {
         fetch('/events')
@@ -88,9 +90,7 @@ const Events = () => {
                 <EventsModal 
                 open={openModal} 
                 handleSubmit={handleSubmit} 
-                handleChange={handleChange} 
-                media={formMedia}
-                handleMedia={handleMediaChange}
+                handleChange={handleChange}
                 eventForm={eventForm}
                 onClose={() => setOpenModal(false)}
                 />

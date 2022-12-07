@@ -47,6 +47,7 @@ group :development do
   gem 'spring'
   #Adds files and creates a line of protection for API keys
   gem 'figaro'
+  gem 'pry'
 end
 
 group :test do
