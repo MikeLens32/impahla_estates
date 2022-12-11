@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../context/user'
-import '../Css/ListingCard.css'
 const ListingsCard = ({ listing, listings, setListings }) => {
 
     const { user } = useContext(UserContext)
@@ -20,22 +19,34 @@ const ListingsCard = ({ listing, listings, setListings }) => {
     }
 
     return (
-        <div className='posted-property'>
-        <div className='property-card'>
+        <div className='bg-white items-center rounded-2xl mx-2 my-3'>
+        <div className='mb-4'>
             <div className='propert-image'>
-                <img src={listing.media} alt={listing.address}/>
+                <img className='w-full object-cover rounded-t-lg' src={listing.media} alt={listing.address}/>
             </div>
             <div className='property-content'>
-                <div className='property-address'><h4>{listing.address}</h4></div>
-                <div className='property-description'><p>Description:{listing.description}</p></div>
-                <div className='property-price'><p>Price: {listing.price}k</p></div>
-                <div className='property-bedroom'><p>Bedrooms: {listing.bedroom}</p></div>
-                <div className='property-bath'><p>Baths: {listing.bath}</p></div>
+                <div className='text-black text-xl font-bold text-center '><h4>{listing.address}</h4></div>
+                <div className='flex'>
+                    <p className='ml-1'>Description </p>
+                    <p>: {listing.description}</p>
+                </div>
+                <div className='flex'>
+                    <p className='ml-1'>Price </p>
+                    <p>: {listing.price} k</p>
+                </div>
+                <div className='flex'>
+                    <p className='ml-1'>Bedrooms </p>
+                    <p>: {listing.bedroom}</p>
+                    </div>
+                <div className='flex'>
+                    <p className='ml-1'>Baths </p>
+                    <p>: {listing.bath}</p>
+                    </div>
                 <div className='property-btn'>
                 {user.id === listing.creator_id ?(
-                    <div className='btn'>
-                        <button onClick={() => handleDelete(listing.id)}><p style={{ color:'white'}}>Remove</p></button>
-                        <button onClick={() => history(`/listings/${listing.id}/edit`)}><p style={{ color:'white'}}>Edit</p></button>
+                    <div className='mx-auto'>
+                        <button className='py-2 rounded-2xl mb-2 mx-2 cursor-pointer' onClick={() => handleDelete(listing.id)}><p style={{ color:'white'}}>Remove</p></button>
+                        <button className='py-2 rounded-2xl mb-2 mx-2 cursor-pointer' onClick={() => history(`/listings/${listing.id}/edit`)}><p style={{ color:'white'}}>Edit</p></button>
                     </div>)
                     : ''}
                 </div>

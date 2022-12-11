@@ -1,5 +1,4 @@
 import React from 'react';
-import '../Css/CommentCards.css'
 
 const CommentCard = ({ comment }) => {
 
@@ -7,10 +6,10 @@ const CommentCard = ({ comment }) => {
 
     return (
         <div key={comment.id}>
-            <div className='comment-text'>
-                <p>{comment.text}</p>
+            <div>
+                <p className='text-sm'>{comment.text}</p>
             </div>
-            <div className='comment-line'></div>
+            <div className='bg-gray-100 pt-0.5 rounded-xl'></div>
         </div>
     )
 }

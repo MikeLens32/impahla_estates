@@ -13,6 +13,8 @@ class PostsController < ApplicationController
     
     def create
         # byebug
+        result = Cloudinary::Uploader.upload(params[:media])
+        post.media = result['url']
         post = Post.create!(pos_params)
         render json: post, status: :created
     end

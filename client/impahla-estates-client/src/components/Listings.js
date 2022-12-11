@@ -1,10 +1,12 @@
-import './Css/Listing.css'
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../context/user';
 import ListingsCard from './Card/ListingsCard';
 import ListingModal from './ListingModal';
+import listBanner from '../assets/pexels-the-lazy-artist-gallery-1642125.jpg'
 
 const Listings = () => {
 
+    const { user } = useContext( UserContext )
     const [property, setProperty] = useState([])
     const [ openModal, setOpenModal ]= useState(false)
     const [listForm, setListForm] = useState({
@@ -23,22 +25,23 @@ const Listings = () => {
         })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e, formMedia) => {
         e.preventDefault()
-        const listFormInfo ={
-            address: listForm.address,
-            description:listForm.description,
-            price: listForm.price,
-            bedroom: listForm.bedroom,
-            bath: listForm.bath,
-            media: listForm.media
-        }
+
+        const formData = new FormData();
+        formData.append("creator_id", user.id);
+        formData.append("media", formMedia.current.files[0]);
+        formData.append("description", listForm.description);
+        formData.append("price", listForm.price);
+        formData.append("bedroom", listForm.bedroom);
+        formData.append("bath", listForm.bath);
+
         fetch('/listings', {
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(listFormInfo)
+            body: JSON.stringify(formData)
         })
         .then(r => r.json())
         .then(listData => {
@@ -59,11 +62,13 @@ const Listings = () => {
     ))
 
     return (
-        <div>
-            <img className='listing-banner' alt='banner' src='https://www.medishare.com/hs-fs/hubfs/Medishare%20Blog%20Assets/AdobeStock_44460269.jpeg?width=1200&name=AdobeStock_44460269.jpeg'/>
-            <h1 className='listing-title'>Listings</h1>
-            <div className='listing-modal-btn'> 
-                <button onClick={() => setOpenModal(true)}>Post Listing</button>
+        <div className='bg-zinc-50'>
+            <img className='w-full h-full object-cover' alt='banner' src={listBanner}/>
+            <div className='flex'>
+            <h1 className='mx-auto my-4 font-bold text-6xl'>Find Your Future Home</h1>
+            </div>
+            <div className='flex'> 
+                <button className='items-center mx-auto' onClick={() => setOpenModal(true)}>Post Listing</button>
             </div>
             <div>
                 <ListingModal 
@@ -74,8 +79,7 @@ const Listings = () => {
                 listForm={listForm}
                 />
             </div>
-            <div className='listing-line'></div>
-            <div className='listed-properties' style={{ border:'flex', flexWrap:'wrap' }}>
+            <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-2'>
                 {listedProperties}
             </div>
                 

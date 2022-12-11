@@ -14,7 +14,9 @@ class ListingsController < ApplicationController
     end
     
     def create
+        result = Cloudinary::Uploader.upload(params[:media])
         listing = Listing.create(list_params)
+        listing.media = result['url']
         listing.creator_id = session[:user_id]
         listing.save
         render json: listing, status: :created

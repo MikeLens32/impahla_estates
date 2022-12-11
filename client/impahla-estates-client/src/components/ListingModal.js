@@ -1,49 +1,51 @@
 import React from 'react'
-import './Css/ListingModal.css'
 
 const ListingModal = ({ open, onClose, handleChange, handleSubmit, listForm }) => {
 
     if(!open) return null
 
     return (
-        <div className='listing-modal-overlay'>
-            <form className='listing-modal-form' style={{ border:'flex', flexWrap:'wrap' }}
-             onSubmit={handleSubmit}>
-                <h4 className='listing-modal-title'>Listing Form</h4>
-                <div className='listing-modal-inline'>
-                    <div className='listing-modal-label'>
-                        <label>Address: </label>
-                        <input className='listing-text'name='address' type='text' onChange={handleChange} value={listForm.address}/>
+        <div className='bg-zinc-200/80 fixed inset-0 z-50'>
+            <div className='flex h-screen justify-center items-center'>
+                <form className='bg-white border p-4 rounded-xl'
+                onSubmit={handleSubmit}>
+                    <h4 className='mx-auto text-2xl font-bold'>Listing Form</h4>
+                    <div className='listing-modal-inline'>
+                        <div className='text-lg font-light mt-2 my-2'>
+                            <label>Address: </label>
+                            <input className='bg-blue-100 rounded-md ml-2' name='address' type='text' onChange={handleChange} value={listForm.address}/>
+                        </div>
+                        <div className='listing-modal-label'>
+                            <label className='text-lg font-light my-2'>Media: </label>
+                            <input className='bg-blue-100 rounded-md ml-2' name='media' type='file' onChange={handleChange} value={listForm.media}/>
+                        </div>
                     </div>
                     <div className='listing-modal-label'>
-                        <label>Media: </label>
-                        <input name='media' type='file' onChange={handleChange} value={listForm.media}/>
+                        <label className='text-lg font-light my-2'>Description: </label>
+                            <input className='bg-blue-100 rounded-md ml-2' name='description' type='textarea' onChange={handleChange} value={listForm.description}/>
                     </div>
-                </div>
-                <div className='listing-modal-label'>
-                <label>Description: </label>
-                        <input name='description' type='textarea' onChange={handleChange} value={listForm.description}/>
-                </div>
-                <div className='listing-modal-inline'>
-                    <div className='listing-modal-label'>
-                        <label>Price: </label>
-                        <input name='price' type='number' min='1' onChange={handleChange} value={listForm.price}/>
+                    <div className='listing-modal-inline'>
+                        <div className='listing-modal-label'>
+                            <label className='text-lg font-light my-2'>Price: </label>
+                            <input className='bg-blue-100 rounded-md ml-2' name='price' type='number' min='1' onChange={handleChange} value={listForm.price}/>
+                        </div>
+                        <div>
+                            <label className='text-lg font-light my-2'>Bedroom: </label>
+                            <input className='bg-blue-100 rounded-md ml-2' name='bedroom' type='number' min='1' onChange={handleChange} value={listForm.bedroom}/>
+                        </div>
+                        <div>
+                            <label className='text-lg font-light my-2'>Bath: </label>
+                            <input className='bg-blue-100 rounded-md ml-2' name='bath' type='number' min='1' onChange={handleChange} value={listForm.bath}/>
+                        </div>
                     </div>
-                    <div>
-                        <label className='listing-modal-label'>Bedroom: </label>
-                        <input name='bedroom' type='number' min='1' onChange={handleChange} value={listForm.bedroom}/>
-                    </div>
-                    <div>
-                        <label className='listing-modal-label'>Bath: </label>
-                        <input name='bath' type='number' min='1' onChange={handleChange} value={listForm.bath}/>
-                    </div>
-                </div>
 
-                <div className='btn-container'>
-                    <input className='bold' type='submit' value='Submit' />
-                    <button onClick={onClose} className='bold'>Close</button>
+                <div className='flex my-2'>
+                    <input className='px-4 py-2 border bg-gradient-to-r from-[var(--primary-dark)] to-[var(--primary-light)] text-white rounded-lg cursor-pointer' type='submit' value='Submit' />
+                    <button onClick={onClose} className='px-4 py-2 border bg-gradient-to-r from-[var(--primary-dark)] to-[var(--primary-light)] text-white rounded-lg cursor-pointer'>Close</button>
                 </div>
             </form>
+            </div>
+            
         </div>
     )
 }

@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PostCard from './Card/PostCard';
-import './Css/Networking.css'
 import { UserContext } from '../context/user';
 import NetworkingModal from './NetworkingModal';
+import networkingBanner from '../assets/pexels-eziz-charyyev-1475938.jpg'
 
 const Networking = () => {
 
@@ -58,28 +58,34 @@ const Networking = () => {
     useEffect(() => {
         fetch('/posts')
         .then(r => r.json())
-        .then(postsData => setPosts(postsData))
+        .then(postsData => {
+            console.log(postsData)
+            setPosts(postsData)})
     }, [])
 
     return (
-        <div>
-            <img className='networking-banner'  src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.biginternships.com%2Fwp-content%2Fuploads%2F2020%2F01%2FCrowdStrike-Summer-Professional-Services-Internship.jpg&f=1&nofb=1&ipt=06e87578b3fd6bb9c9593596e0d92959e0ae1f3728dea8e3b2036db84dab92fb&ipo=images' alt='Networking Banner'/>
-            <h1 className='networking-title'>Networking</h1>
-            <div className='networking-modal-btn'>
-                <button onClick={() => setOpenModal(true)}>Create Post</button>
+        <div className='bg-zinc-50'>
+            <div className='w-full h-[90vh]'>
+                <img className='w-full h-full object-cover'  src={networkingBanner} alt='Networking Banner'/>
             </div>
-            <div>
-                <NetworkingModal 
-                open={openModal}
-                onClose={() => setOpenModal(false)}
-                handleChange={handleChange}
-                handleSubmit={handleSubmit}
-                newPost={newPost}/>
+            <div className='flex'>
+                <h1 className='mx-auto my-4 font-bold text-6xl'>Networking</h1>
             </div>
-            <div className='networking-line'></div>
-            <div className='networking-cards'>
-                {showPostings()}
-            </div>
+                
+                <div className='flex'>
+                    <button className='items-center mx-auto' onClick={() => setOpenModal(true)}>Create Post</button>
+                </div>
+                <div>
+                    <NetworkingModal 
+                    open={openModal}
+                    onClose={() => setOpenModal(false)}
+                    handleChange={handleChange}
+                    handleSubmit={handleSubmit}
+                    newPost={newPost}/>
+                </div>
+                <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-2'>
+                    {showPostings()}
+                </div>
         </div>
     )
 }

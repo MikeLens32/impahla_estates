@@ -1,15 +1,11 @@
 import React, { useContext, useEffect, useState  } from 'react';
 import { UserContext } from '../context/user';
-// import { useParams } from '/react-router-dom'
 import EventsCards from './Card/EventsCards';
-// import CardGroup from 'react-bootstrap/CardGroup';
-import './Css/Event.css'
 import EventsModal from './EventsModal';
-// import axios from 'axios';
+import eventBanner from '../assets/pexels-julian-v-860227.jpg';
 
 const Events = () => {
 
-    // const { id } = useParams()
     const { user } = useContext( UserContext )
     const [ openModal, setOpenModal ] = useState(false)
     const [listedEvent, setListedEvent] = useState([])
@@ -28,26 +24,12 @@ const Events = () => {
 
     const handleSubmit = (e, formMedia) => {
         e.preventDefault();
-    
-        // const formInfoData = new FormData();
-        // formInfoData.append("file", formMedia.current.files[0]);
-        // formInfoData.append("upload_preset", "sb8uogjx");
 
         const formData = new FormData();
         formData.append("host_id", user.id);
         formData.append("media", formMedia.current.files[0]);
         formData.append("text", eventForm.text);
         formData.append("data", eventForm.date);
-
-
-        //send image to cloudinary
-        // axios.post("https://api.cloudinary.com/v1_1/da3q0bau5/image/upload", formInfoData)
-        // .then((response) => {
-        //     console.log(response.data.secure_url)
-        // })
-        // .catch((err) => {
-        //     console.log(err)
-        // })
 
         fetch("/events", {
           method: "POST",
@@ -78,13 +60,15 @@ const Events = () => {
     ))    
 
     return (
-        <div>
-            
-            <img className='event-image' src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.atulhost.com%2Fwp-content%2Fuploads%2F2016%2F06%2Fbusiness-networking-event.jpg&f=1&nofb=1&ipt=ffe15b72274c1b7798e156d127dfbd0e82b03ef1cc633a23d77e4f08ab1a6928&ipo=images' alt='Event-Banner'/>
-            <h1 className='event-title'>Events</h1>
-            <p className='event-slogan'>If You're New To World Of Real Estate Or Someone Seasoned, Look No Further.</p>
-            <div className='event-modal-btn'>
-                <button  onClick={() => setOpenModal(true) } >Post Event</button>
+        <div className='bg-zinc-50'>
+             <div className='w-full h-[90vh]'>
+            <img className='w-full h-full object-cover' src={eventBanner} alt='Home Banner'/>
+            </div>
+            <div className='flex'>
+                <h1 className='mx-auto my-4 font-bold text-6xl'>Let's Build Our Networking</h1>
+            </div>
+            <div className='flex'>
+                <button className='items-center mx-auto' onClick={() => setOpenModal(true)}>Post Event</button>
             </div>
             <div>
                 <EventsModal 
@@ -95,8 +79,7 @@ const Events = () => {
                 onClose={() => setOpenModal(false)}
                 />
             </div>
-            <div className='event-line'></div>
-            <div className='event-cards' style={{ border:'flex', flexWrap:'wrap' }}>
+            <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-2'>
                 {showEvents}
             </div>
         </div>

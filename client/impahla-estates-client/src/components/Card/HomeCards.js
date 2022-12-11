@@ -1,29 +1,29 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../Css/HomeCards.css';
+// import '../Css/HomeCards.css';
 
 const HomeCards = ({ title, imageUrl, body, path }) => {
 
     const history = useNavigate()
 
     return (
-        <div className='card-container' >
-            <div className='image-container'>
-                <img src={imageUrl} alt={title}/>
+        <div className='bg-white items-center rounded-2xl w-9/12 mx-auto mb-4' >
+            <div>
+                <img className='mx-auto rounded-lg' src={imageUrl} alt={title}/>
             </div>
-            <div className='card-content'>
-                <div className='card-title'>
-                    <h3>{title}</h3>
+            <div className='my-2'>
+                <div className='w-full flex items-center mx-auto'>
+                    <h3  className='pl-2 font-bold text-2xl'>{title}</h3>
                 </div>
-                <div className='card-body'>
-                    <p className='body'>{body}</p>
+                <div className='my-2'>
+                    <p className='w-9/12 pl-2'>{body}</p>
                 </div>
-                <div className='btn' style={{ justifyItems:'center' }}>
-                    <button onClick={() => history(path)}>
-                        <p>
-                            View More
-                        </p>
-                    </button>
+                <div>
+                    <button className='py-2 rounded-2xl mb-2 mx-2 cursor-pointer' onClick={() => history(path)}>
+                            <p>
+                                View More
+                            </p>
+                        </button>
                 </div>
             </div>
                 

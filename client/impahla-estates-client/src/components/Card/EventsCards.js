@@ -1,12 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-// import Card from 'react-bootstrap/Card';
-// import Button from 'react-bootstrap/Button';
 
 const EventsCards = ({ event, events, setEvents, user }) => {
     console.log(events)
     const handleDelete = (eventID) => {
-        // console.log(`deleting league with ID: ${eventID}`)
         fetch(`/events/${eventID}`, {
             method: 'DELETE',
         })
@@ -20,38 +17,24 @@ const EventsCards = ({ event, events, setEvents, user }) => {
 
 
     return (
-        <div>
-            <div className='property-card'>
-            <div className='propert-image'>
-                <img src={event.media} alt={event.text}/>
+        <div className='bg-white items-center rounded-2xl mx-2 my-3'>
+            <div>
+            <div>
+                <img className='w-full object-cover rounded-t-lg' src={event.media} alt={event.text}/>
             </div>
-            <div className='pproperty-content'>
-                <div className='property-address' style={{ color:'white'}}><h4>{event.text}</h4></div>
-                <div className='property-description'><p>{event.date}</p></div>
-                <div className='property-btn'>
+            <div>
+                <div className='text-black text-xl font-bold text-center '><h4>{event.text}</h4></div>
+                <div className='flex'><p className='text-black font-thin text-lg mx-auto my-3'>{event.date}</p></div>
+                <div className='flex'>
                 {user.id === event.host_id ?(
-                    <div className='btn'>
-                        <button onClick={() => handleDelete(event.id)}><p>Remove</p></button>
-                        <button onClick={() => history(`/events/${event.id}/edit`)}><p>Edit</p></button>
+                    <div className='mx-auto'>
+                        <button className='py-2 rounded-2xl mb-2 mx-2 cursor-pointer' onClick={() => handleDelete(event.id)}><p>Remove</p></button>
+                        <button className='py-2 rounded-2xl mb-2 mx-2 cursor-pointer' onClick={() => history(`/events/${event.id}/edit`)}><p>Edit</p></button>
                     </div>)
                     : ''}
                 </div>
             </div>
         </div>
-            {/* <Card className="text-center" style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={event.media} />
-                <Card.Body>
-                    <Card.Title>{event.text}</Card.Title>
-                    <Card.Text>
-                    {event.date}
-                    </Card.Text>
-                </Card.Body>
-                { user.id === event.host_id ? (
-                <Card.Footer className="text-muted">
-                    <button onClick={() => handleDelete(event.id)}>Remove</button>  
-                    <button onClick={() => history(`/events/${event.id}/edit`)}>Edit</button>
-                </Card.Footer>) : ''}
-            </Card> */}
         </div>
     )
 }

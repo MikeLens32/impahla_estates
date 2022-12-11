@@ -1,5 +1,4 @@
 import React, { useEffect, useContext } from 'react';
-import './App.css';
 import { useNavigate } from 'react-router';
 import { UserContext } from './context/user';
 import Contact from './components/Contact'
@@ -10,9 +9,9 @@ import Events from './components/Events';
 import Listings from './components/Listings';
 import Networking from './components/Networking';
 import { Routes, Route } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import EditEvent from './components/EditEvent';
 import EditListing from './components/EditListing';
+import TopBar from './components/TopBar';
 
 function App() {  
 
@@ -31,17 +30,18 @@ function App() {
 
   return (
     <div className='app-container'> 
-        <NavBar />
-        <Routes>
-          < Route  exact path="/" element={<Login/>}/>
-          < Route  exact path="/home" element={<Home/>}/>
-          < Route  exact path="/contact" element={<Contact/>}/>
-          < Route  exact path="/networking" element={<Networking/>}/>
-          < Route  exact path="/events" element={<Events/>}/>
-          < Route  exact path="/events/:id/edit" element={<EditEvent/>}/>
-          < Route  exact path="/listings" element={<Listings/>}/>
-          < Route  exact path="/listings/:id/edit" element={<EditListing/>}/>
-        </Routes>
+      <TopBar />
+      <NavBar />
+      <Routes>
+        < Route  exact path="/" element={<Login/>}/>
+        < Route  exact path="/home" element={<Home/>}/>
+        < Route  exact path="/contact" element={<Contact/>}/>
+        < Route  exact path="/networking" element={<Networking/>}/>
+        < Route  exact path="/events" element={<Events/>}/>
+        < Route  exact path="/events/:id/edit" element={<EditEvent/>}/>
+        < Route  exact path="/listings" element={<Listings/>}/>
+        < Route  exact path="/listings/:id/edit" element={<EditListing/>}/>
+      </Routes>
       
     </div>
   );

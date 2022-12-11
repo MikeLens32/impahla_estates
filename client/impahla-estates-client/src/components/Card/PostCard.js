@@ -1,7 +1,6 @@
 // import { v4 as uuid } from 'uuid';
 import CommentCard from './CommentCard'
 import React, { useState } from 'react';
-import '../Css/PostCards.css'
 const PostCard = ({ index, post, setPosts }) => {
 
     // const unique_id = uuid()
@@ -56,20 +55,20 @@ const PostCard = ({ index, post, setPosts }) => {
     
 
     return (
-        <div>
-            <div className='post-card'>
+        <div className='bg-white items-center rounded-2xl mx-2 my-4 shadow-sm'>
+            <div className='pb-3'>
                 <div className='post-image'>
-                    <img src={post.media} alt={post.id}/>
+                    <img className='w-full object-cover rounded-t-lg' src={post.media} alt={post.id}/>
                 </div>
-                <div className='post-content'>
-                    <p className='post-text'>{post.text}</p>
+                <div className='flex'>
+                    <p className='text-black font-thin text-lg mx-auto my-3'>{post.text}</p>
                 </div>
                 <div className='post-line'></div>
                 <div className='post-comments'>
                     <form className='post-comment-form' onSubmit={e => handleSubmit(e, post)}>
                         <div className='post-comment-label'>
                             <label>Comments: </label>
-                            <input name='text' type='textarea' onChange={handleChange} value={postComments.text}/>
+                            <input className='bg-blue-100 rounded-md ml-2 pl-9 cursor-pointer my-2' name='text' type='textarea' onChange={handleChange} value={postComments.text}/>
                         </div>
 
                         <div className='comment-btn'>
