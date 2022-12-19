@@ -13,14 +13,18 @@ class PostsController < ApplicationController
     
     def create
         # byebug
-        result = Cloudinary::Uploader.upload(params[:media])
+        result = Cloudinary::Uploader.upload(params[:media])        
+        post = Post.new(post_params)
         post.media = result['url']
-        post = Post.create!(pos_params)
-        render json: post, status: :created
+        if post.save
+            render json: post, status: :created
+        else
+            render json: post.errors
+        end
     end
 
     def update 
-        @post.update!(pos_params)
+        @post.update!(post_params)
         render json: @post, status: :ok
     end
 
@@ -36,7 +40,7 @@ class PostsController < ApplicationController
         @post = Post.find_by!(id: params[:id])
     end
 
-    def pos_params
+    def post_params
         params.permit(:text, :author_id, :media, :reactions)
     end
 

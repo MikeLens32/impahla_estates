@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { UserContext } from '../context/user'
 import {AiFillPhone, AiOutlineClockCircle} from 'react-icons/ai'
 import {BsChatSquareDots} from 'react-icons/bs'
 
 const TopBar = () => {
+
+    const { user, signout } = useContext(UserContext)
+
     return (
         <div className='flex justify-between items-center px-4 py-2'>
             <div className='flex items-center'>
@@ -18,7 +22,7 @@ const TopBar = () => {
                     <AiFillPhone size={20} className='mr-2 text-[var(--primary-dark)]'/>
                     <p className='text-sm text-gray-700'>1-888-817-1234</p>
                 </div>
-                <button>Get An Agent Today</button>
+                { !user ? null : (<button onClick={signout}>Sign Out</button>)}
             </div>
             
         </div>

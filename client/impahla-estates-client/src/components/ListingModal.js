@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { useRef } from 'react';
 
 const ListingModal = ({ open, onClose, handleChange, handleSubmit, listForm }) => {
 
+    const formMedia = useRef();
     if(!open) return null
 
     return (
         <div className='bg-zinc-200/80 fixed inset-0 z-50'>
             <div className='flex h-screen justify-center items-center'>
                 <form className='bg-white border p-4 rounded-xl'
-                onSubmit={handleSubmit}>
+                onSubmit={e => handleSubmit(e, formMedia)}>
                     <h4 className='mx-auto text-2xl font-bold'>Listing Form</h4>
                     <div className='listing-modal-inline'>
                         <div className='text-lg font-light mt-2 my-2'>
@@ -17,7 +18,8 @@ const ListingModal = ({ open, onClose, handleChange, handleSubmit, listForm }) =
                         </div>
                         <div className='listing-modal-label'>
                             <label className='text-lg font-light my-2'>Media: </label>
-                            <input className='bg-blue-100 rounded-md ml-2' name='media' type='file' onChange={handleChange} value={listForm.media}/>
+                            <input className='bg-blue-100 rounded-md ml-2' 
+                            name='media' type='file' ref={formMedia}/>
                         </div>
                     </div>
                     <div className='listing-modal-label'>

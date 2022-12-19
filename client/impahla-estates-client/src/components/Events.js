@@ -29,7 +29,7 @@ const Events = () => {
         formData.append("host_id", user.id);
         formData.append("media", formMedia.current.files[0]);
         formData.append("text", eventForm.text);
-        formData.append("data", eventForm.date);
+        formData.append("date", eventForm.date);
 
         fetch("/events", {
           method: "POST",
@@ -41,7 +41,7 @@ const Events = () => {
             setEventForm({
               text: "",
               date: "",
-              media: ''
+              media: ""
             });
             setOpenModal(false);
           });

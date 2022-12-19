@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import emailjs from "emailjs-com";
-import './Css/Contact.css';
+import contactBanner from '../assets/pexels-photomix-company-101808.jpg';
 
 function Contact() {
 
@@ -37,27 +37,33 @@ function Contact() {
     }
 
     return(
-        <div className='contact-email'>
-            <h1 style={{ color:'white' }}>
-                Contact
-            </h1>
-            <form className="Form" ref={form} onSubmit={sendEmail}>
-            <label>Full Name</label>
+        <div className='bg zinc-50'>
+            <div className='w-full h-[90vh]'>
+                <img className='w-full h-full object-cover'  src={contactBanner} alt='Networking Banner'/>
+            </div>
+            <div className='flex'>
+                <h1 className='mx-auto my-4 font-bold text-6xl'>Contact</h1>
+            </div>
+            <form className='bg-white border p-4 rounded-xl lg:mx-36 mb-10' ref={form} onSubmit={sendEmail}>
+            <label className='text-lg font-light mt-2 my-2'>Full Name</label>
             <input 
+            className='bg-blue-100 rounded-md ml-2'
             required type="text"
             name={"user" || contactInfo.user}
             onChange={handleUser}
             value={contactInfo.user}/>
-            <label>Email Address</label>
+            <label className='text-lg font-light mt-2 my-2'>Email Address</label>
             <input 
+            className='bg-blue-100 rounded-md ml-2'
             required type="email"
             name={"email" || contactInfo.email}
             onChange={handleEmail}
             value={contactInfo.email}/>
             <br/>
-            <label>Comment</label>
+            <label className='text-lg font-light mt-2 my-2'>Comment</label>
             <br/>
             <textarea 
+            className='bg-blue-100 rounded-md ml-2'
             cols="80"
             rows="5"
             required type="text"
@@ -65,7 +71,7 @@ function Contact() {
             onChange={handleComment}
             value={contactInfo.comment}/>
             <br/>
-            <input className="Text-Field" type="submit" value="Create Request"/>
+            <input className='px-4 py-2 border bg-gradient-to-r from-[var(--primary-dark)] to-[var(--primary-light)] text-white rounded-lg cursor-pointer' type="submit" value="Submit"/>
         </form>
         </div>
     )

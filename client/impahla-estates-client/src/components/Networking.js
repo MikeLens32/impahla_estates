@@ -22,19 +22,21 @@ const Networking = () => {
         })
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const postInfo = {
-            author_id: newPost.author_id,
-            text: newPost.text,
-            media: newPost.media
-        }
+    const handleSubmit = (e, formMedia) => {
+        console.log(`submitting the form...`);
+
+        e.preventDefault();        
+
+        const formData = new FormData();
+        formData.append("author_id", user.id);
+        formData.append("media", formMedia.current.files[0]);
+        formData.append("text", newPost.text);
+
+        console.log(`submitting the form... fetch posts`);
+
         fetch('/posts', {
             method: 'POST',
-            headers:{
-                'COntent-Type':'application/json'
-            },
-            body: JSON.stringify(postInfo)
+            body: formData,
         })
         .then(r => r.json())
         .then(postData => {

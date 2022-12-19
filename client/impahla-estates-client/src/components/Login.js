@@ -1,6 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/user';
 import { MessageContext } from '../context/message'
@@ -74,46 +72,49 @@ const Login = () => {
 
 
     return (
-        <div className='login-page'>
+        <div className='bg-zinc-50 h-screen w-full'>
             <br/>
             {!toggle ?
-            (<Form onSubmit={handleLogin}>
-                <Form.Group className="mb-3 mx-2" controlId="formBasicUsername" onChange={handleChange} value={userObjIn.username}>
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control required name='username' type="text" placeholder="Enter Username" />
-                </Form.Group>
-
-                <Form.Group className="mb-3 mx-2" controlId="formBasicPassword" onChange={handleChange} value={userObjIn.password}>
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control required name='password' type="password" placeholder="*********"/>
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                    Submit
-                </Button>
-                <Form.Label>Need to Sign Up?</Form.Label>
-                <Button variant="outline-primary" onClick={handleToggle}>
-                    Sign Up
-                </Button>
-            </Form>) : 
-            (<Form onSubmit={handleSignUp}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control type="text" placeholder="Enter Username" onChange={handleSignupChange} value={userObj.username} required/>
-                </Form.Group>
-
-                <Form.Group className="mb-3 mx-4" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="*********" onChange={handleSignupChange} value={userObj.password} required/>
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                    Submit
-                </Button>
-                <Form.Label>Need to Sign In?</Form.Label>
-                <Button variant="outline-primary" onClick={handleToggle}>
-                    Sign In
-                </Button>
-            </Form>)
-            }
+            (<div className='flex h-screen justify-center items-center'>
+                <form onSubmit={handleLogin} className="bg-white border p-4 rounded-xl lg:mx-64 ">
+                <h1 className='text-2xl font-bold flex items-center justify-center pb-2'> Sign In</h1>
+                    <div>
+                        <label className='text-lg font-light mt-2 my-2'>Username</label>
+                        <input className='bg-blue-100 rounded-md ml-2' required name='username' type="text" placeholder="Enter Username"  onChange={handleChange} value={userObjIn.username}/>
+                    </div>
+                    <div className='pt-2'>
+                        <label className='text-lg font-light mt-2 my-2'>Password</label>
+                        <input className='bg-blue-100 rounded-md ml-2' required name='password' type="password" placeholder="*********"onChange={handleChange} value={userObjIn.password}/>
+                        
+                    </div>
+                    <div className='pt-4'>
+                        <input className='px-4 py-2 border bg-gradient-to-r from-[var(--primary-dark)] to-[var(--primary-light)] text-white rounded-lg cursor-pointer' type="submit" value='Submit'/>
+                        <label className='px-8'>Need to Sign Up?</label>
+                        <button className='cursor-pointer' onClick={handleToggle}>Sign Up</button>
+                    </div>
+                
+                </form>
+            </div>) : 
+            (<div className='flex h-screen justify-center items-center '>
+            <form onSubmit={handleSignUp} className="bg-white border p-4 rounded-xl lg:mx-64 ">
+                <h1 className='text-2xl font-bold flex items-center justify-center pb-2'> Create Accout</h1>
+                <div>
+                    <label className='text-lg font-light mt-2 my-2'>Username</label>
+                    <input className='bg-blue-100 rounded-md ml-2' required name='username' type="text" placeholder="Enter Username"  onChange={handleSignupChange} value={userObj.username}/>
+                </div>
+                <div className='pt-2'>
+                    <label className='text-lg font-light mt-2 my-2'>Password</label>
+                    <input className='bg-blue-100 rounded-md ml-2' required name='password' type="password" placeholder="*********"onChange={handleSignupChange} value={userObj.password}/>
+                    
+                </div>
+                <div className='pt-4'>
+                    <input className='px-4 py-2 border bg-gradient-to-r from-[var(--primary-dark)] to-[var(--primary-light)] text-white rounded-lg' type="submit" value='Submit'/>
+                    <label className='px-8'>Need to Sign In?</label>
+                    <button className='cursor-pointer' onClick={handleToggle}>Sign In</button>
+                </div>
+            
+            </form>
+        </div>)}
         </div>
     )
 }

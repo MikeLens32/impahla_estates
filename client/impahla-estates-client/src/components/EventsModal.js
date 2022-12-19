@@ -23,7 +23,8 @@ const EventsModal = ({ open, onClose, handleSubmit, handleChange, eventForm }) =
                 </div>
                 <div>
                     <label className='text-lg font-light my-2'>Media</label>
-                    <input className='mb-1 bg-blue-100 rounded-md' name='media' type='file' ref={formMedia}/>
+                    <input className='mb-1 bg-blue-100 rounded-md' 
+                    name='media' type='file' ref={formMedia}/>
                     <br/>
                 </div>
                 

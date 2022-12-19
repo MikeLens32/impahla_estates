@@ -33,21 +33,27 @@ const Listings = () => {
         formData.append("media", formMedia.current.files[0]);
         formData.append("description", listForm.description);
         formData.append("price", listForm.price);
+        formData.append("address", listForm.address);
         formData.append("bedroom", listForm.bedroom);
         formData.append("bath", listForm.bath);
 
         fetch('/listings', {
-            method: 'POST',
-            headers:{
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
+            method: "POST",
+            body: formData,
         })
         .then(r => r.json())
         .then(listData => {
-            setProperty([...property,listData])
-            setOpenModal(false)
-        })
+            setProperty([...property,listData]);
+            setListForm({
+                address: '',
+                description:'',
+                price: '',
+                bedroom: '',
+                bath: '',
+                media:''
+            });
+            setOpenModal(false);
+        });
 
     }
 

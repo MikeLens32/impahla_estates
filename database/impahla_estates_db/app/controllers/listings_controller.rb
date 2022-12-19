@@ -14,12 +14,17 @@ class ListingsController < ApplicationController
     end
     
     def create
+        # binding.pry
         result = Cloudinary::Uploader.upload(params[:media])
         listing = Listing.create(list_params)
         listing.media = result['url']
         listing.creator_id = session[:user_id]
-        listing.save
-        render json: listing, status: :created
+        if listing.save
+            render json: listing, status: :created
+        else 
+            render json: listing.errors
+        end
+        
     end
 
     def update 
@@ -40,7 +45,7 @@ class ListingsController < ApplicationController
     end
 
     def list_params
-        params.permit(:id, :address, :description, :media, :price, :bedroom, :bath)
+        params.permit(:id, :address, :description, :media, :price, :bedroom, :bath, :creator_id)
     end
 
 end
